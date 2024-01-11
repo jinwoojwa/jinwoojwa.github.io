@@ -5,7 +5,7 @@ layout: single
 comments: false
 ---
 
-![ABOUT_IMAGE](\assets\images\avatar.png){: width="200" height="200"}
+![ABOUT_IMAGE](/assets/images/avatar.png){: width="200" height="200"}
 
 
 **🏠 Jeju, South Korea**
