@@ -1,9 +1,9 @@
 ---
-title: "모각코"
+title: "Algorithm"
 layout: category
-permalink: /categories/mogakco/
+permalink: /categories/algorithm/
 author_profile: true
-taxonomy: Mogakco
+taxonomy: Algorithm
 sidebar:
   nav: "categories"
 ---

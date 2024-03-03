@@ -18,10 +18,15 @@ main:
 # sidebar navigation (categories)
 # 2022.02.15 sidebar update : simple ver.
 categories:
+  - title: "알고리즘"
+    url: /categories/algorithm/
+    
+  - title: "코딩테스트[백준]"
+    url: /categories/baekjoon/
+        
   - title: "모각코"
     url: /categories/mogakco/
-  - title: "Coding Test"
-    url: /categories/coding_test/
+
 
 #  - title: "Categories3"
 #    url: /categories/categories3/
