@@ -60,7 +60,11 @@ last_modified_at: 2024-03-03
 ### 구간 합 예시 문제
 
 * [백준 11659번](https://www.acmicpc.net/problem/11659)
-    + [풀이](/algorithm/baekjoon_No_11659/)
+    + [풀이](https://jinwoojwa.github.io/jinwoo.github.io/algorithm/baekjoon_No_11659/)
+* [백준 11660번](https://www.acmicpc.net/problem/11660)
+    + [풀이](https://jinwoojwa.github.io/jinwoo.github.io/algorithm/baekjoon_No_11660/)
+* [백준 10986번](https://www.acmicpc.net/problem/10986)
+    + [풀이](https://jinwoojwa.github.io/jinwoo.github.io/algorithm/baekjoon_No_10986/)
 
 
 

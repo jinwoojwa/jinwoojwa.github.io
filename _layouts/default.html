@@ -56,6 +56,11 @@
     {% include head.html %}
     {% include head/custom.html %}
 
+    <!-- 수학 수식 적용 -->
+    {% if page.use_math %}
+	  {% include mathjax_support.html %}
+    {% endif %}
+
     <link rel="apple-touch-icon" sizes="180x180" href="https://github-account.github.io/assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://github-account.github.io/assets/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://github-account.github.io/assets/images/favicon/favicon-16x16.png">
