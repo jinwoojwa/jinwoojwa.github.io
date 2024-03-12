@@ -16,22 +16,21 @@ main:
   #   url: /categories/
 
 # sidebar navigation (categories)
-# 2022.02.15 sidebar update : simple ver.
 categories:
-  - title: "알고리즘"
-    url: /categories/algorithm/
+  - title: "STUDY"
+    children:
+      - title: "Algorithm"
+        url: /STUDY/algorithm/
+      - title: "Markdown"
+        url: /STUDY/markdown/
+#     - title: "Operating System"
+#       url: /STUDY/os/
     
   - title: "코딩테스트[백준]"
     url: /categories/baekjoon/
         
   - title: "모각코"
     url: /categories/mogakco/
-
-  - title: "운영체제"
-    url: /categories/os/
-
-  - title: "Markdown"
-    url: /categories/markdown/
 
 
 #  - title: "Categories3"
