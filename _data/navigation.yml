@@ -20,13 +20,13 @@ categories:
   - title: "STUDY"
     children:
       - title: "Algorithm"
-        url: /STUDY/algorithm/
+        url: /study/algorithm/
       - title: "Baekjoon"
-        url: /STUDY/baekjoon/
+        url: /study/baekjoon/
       - title: "Markdown"
-        url: /STUDY/markdown/
+        url: /study/markdown/
 #     - title: "Operating System"
-#       url: /STUDY/os/
+#       url: /study/os/
         
   - title: "모각코"
     url: /categories/mogakco/
