@@ -1,7 +1,7 @@
 ---
-title: "코딩테스트 [백준]"
+title: "Baekjoon"
 layout: category
-permalink: /categories/baekjoon/
+permalink: /study/baekjoon/
 author_profile: true
 taxonomy: Baekjoon
 sidebar:
