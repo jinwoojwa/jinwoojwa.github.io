@@ -25,8 +25,8 @@ categories:
         url: /study/baekjoon/
       - title: "Markdown"
         url: /study/markdown/
-#     - title: "Operating System"
-#       url: /study/os/
+      - title: "Operating System"
+        url: /study/operating-system/
         
   - title: "모각코"
     url: /categories/mogakco/
