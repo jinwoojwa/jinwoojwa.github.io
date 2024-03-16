@@ -21,6 +21,8 @@ categories:
     children:
       - title: "Algorithm"
         url: /study/algorithm/
+      - title: "Data Structure"
+        url: /study/data-structure/
       - title: "Baekjoon"
         url: /study/baekjoon/
       - title: "Markdown"
