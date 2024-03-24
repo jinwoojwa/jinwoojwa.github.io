@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jinwoojwa.github.io/jinwoo.github.io//sitemap.xml
