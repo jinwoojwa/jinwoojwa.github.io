@@ -1,6 +1,6 @@
 ---
 title: "마크다운 문법"
-excerpt: "Markdown"
+excerpt: "Markdown 문법 정리"
 
 categories:
   - Markdown
