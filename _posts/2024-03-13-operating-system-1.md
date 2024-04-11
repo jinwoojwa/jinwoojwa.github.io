@@ -183,4 +183,40 @@ OS는 `시스템 소프트웨어`로서 다음과 같은 기능들을 제공한�
 
 <center><img src="https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/81425bc1-4953-48d6-8427-464a6eb98f0e" width="500" height="400"></center>
 
+<br>
 
+# 👑 OS Architecture : Monolithic Kernel, Microkernel
+
+최근까지 대부분의 운영체제는 대규모의 단일 커널(_monolithic_)로 이루어져 있었다. <br>
+OS는 `scheduling`, `file system`, `networking`, `device drivers`, `memory management` 등 다양한 기능들을 제공하는데, `Monolithic Kernel`은 이러한 기능들을 모두 가지고 있다. <br>
+이와 달리, `Microkernel Architecture`는 커널에 `memory management`, `process management` 등을 포함한 핵심 기능만을 할당하며, 다른 OS 서비스는 마이크로커널에 의해 마치 응용프로그램처럼 처리된다.
+
+<br>
+
+## 💡 Microkernel
+
+마이크로커널 구조는 커널에 필수적인 기능들만 할당하고, 다른 여러 기능들을 커널 외부로 빼내어 응용프로그램처럼 처리한다.
+
+* Microkernel 구조의 장점
+
+  - **유지보수** <br>
+
+    핵심 기능만을 커널 내부에 두고, 외부 모듈로 기능을 분리했기 때문에, 각각의 모듈들을 독립적으로 관리할 수 있다. 예를 들어, 특정 모듈에 이상이 발생하더라도 커널 자체에 영향을 끼치지 않고, 해당 모듈만 수정/교체가 가능하다.
+  
+  - **보안** <br>
+
+    작고 단순한 디자인과 권한 분리로 인해 보안을 강화하는 데 도움이 된다.
+
+  - **유연성** <br>
+
+    운영체제의 기능을 확장하거나 변경하는 데 용이하다.
+
+* Microkernel 구조의 단점
+
+  - **성능저하** <br>
+
+    기능을 모듈화하여 구현하기 때문에 커널과 모듈간의 통신이 필요하다. 모듈간의 통신은 `overhead`를 발생시키며, 이는 시스템의 응답 속도와 처리량에 영향을 주어 시스템 성능을 저하시킬 수 있다.
+
+<br>
+
+![image](https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/e44fdadb-4fed-4b96-b8ec-e020b1b711d1)
