@@ -1,5 +1,5 @@
 ---
-title: "프로세스 (Process)"
+title: "[OS] 프로세스 (Process)"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:

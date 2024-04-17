@@ -1,5 +1,5 @@
 ---
-title: "운영체제와 운영체제의 발전 과정"
+title: "[OS] 운영체제와 운영체제의 발전 과정"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
