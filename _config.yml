@@ -22,11 +22,11 @@ locale: "ko-KR" #"en-US"
 title: "JWs DevLog" # 상단 헤더에 보이는 블로그 명
 title_separator: "&#124;"
 subtitle: # site tagline that appears below site title in masthead
-name: "Jinwoo" # 블로그 닉네임 설정
-description: "개발 공부 블로그입니다." # 블로그 설명
+name: "Jinw00" # 블로그 닉네임 설정
+description: "Jinw00s DevLog" # 블로그 설명
 url: "https://jinwoo.github.io/" # 블로그 URL
 baseurl: # the subpath of your site, e.g. "/blog"
-repository: "https://github.com/jinwoojwa/jinwoo.github.io" # GitHub Repo 이름
+repository: "jinwoojwa/jinwoo.github.io" # GitHub Repo 이름
 teaser: #
 
 # logo                     : # 블로그명 앞에 로고 추가하고 싶을 경우 사용
