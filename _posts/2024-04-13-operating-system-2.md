@@ -204,9 +204,17 @@ published: true
 
 # 👑 Process Context
 
-`Process Context` 란 프로세스가 실행되는 데 필요한 정보와 구성요소들의 집합을 의미한다. <br>
+현대의 `Time sharing system` 에서는 여러 프로세스가 짧은 `time slice` 동안 CPU를 점유하고, <br>
 
-`Context`는 `User context`와 `System context`로 구분된다.
+다른 프로세스에게 CPU 를 넘기며 실행된다. 그러다 다시 CPU를 점유하게 되었을 때, 이전에 <br>
+
+어느 부분까지 명령을 실행했는지에 대한 정보와 관련 구성 요소들을 파악해야만 한다. <br>
+
+이때의 정보와 관련 구성 요소들을 `process context`라 한다. <br>
+
+`Process Context` 란 프로세스가 실행되는 데 필요한 정보와 구성요소들의 집합을 의미하며, <br>
+
+`User context`와 `System context`로 구분된다. <br>
 
   - **User Context** <br>
 
@@ -220,6 +228,7 @@ published: true
     + PCB (Process Control Block) : 프로세스의 정보를 저장하는 자료구조
 
 <br>
+
 
 
 
