@@ -204,13 +204,13 @@ published: true
 
 # 👑 Process Context
 
-현대의 `Time sharing system` 에서는 여러 프로세스가 짧은 `time slice` 동안 CPU를 점유하고, <br>
+현대의 `Time sharing system` 에서는 여러 프로세스가 짧은 `time slice` 동안 CPU를 <br>
 
-다른 프로세스에게 CPU 를 넘기며 실행된다. 그러다 다시 CPU를 점유하게 되었을 때, 이전에 <br>
+점유하고, 다른 프로세스에게 CPU 를 넘기며 실행된다. 그러다 다시 CPU를 점유하게 <br>
 
-어느 부분까지 명령을 실행했는지에 대한 정보와 관련 구성 요소들을 파악해야만 한다. <br>
+되었을 때, 이전에 어느 부분까지 명령을 실행했는지에 대한 정보와 관련 구성 요소들을 <br>
 
-이때의 정보와 관련 구성 요소들을 `process context`라 한다. <br>
+파악해야만 한다. 이때의 정보와 관련 구성 요소들을 `process context`라 한다. <br>
 
 `Process Context` 란 프로세스가 실행되는 데 필요한 정보와 구성요소들의 집합을 의미하며, <br>
 
@@ -229,7 +229,153 @@ published: true
 
 <br>
 
-## 
+# 👑 Execution mode
 
+CPU는 운영 체제의 지시에 따라 `user mode` 와 `system mode` 간을 전환하여, <br>
 
+프로세스 간의 안전한 실행과 시스템 자원의 효율적 관리를 가능하게 한다. <br>
 
+- **User mode** <br>
+
+  + `Less-privileged mode`
+  + 일반 응용 프로그램이나 사용자 작업이 실행되는 모드
+
+- **System mode** (= kernel mode, supervisor mode) <br>
+
+  + `More-privileged mode`
+  + 커널 또는 OS의 핵심 기능들이 실행되는 모드
+  + 시스템 자원에 직접 접근할 수 있으며, 시스템 전반의 제어를 담당한다.
+
+<br>
+
+**Mode change** <br>
+
+`Mode change` 란 프로세서가 현재 실행 중인 모드를 변경하는 것을 의미한다. <br>
+
+`mode change`는 일반적으로 두 가지 상황에서 발생한다. <br>
+
+- **System call** <br>
+
+  사용자 모드에서 실행 중인 프로세스가 운영 체제의 서비스를 요청할 때 발생한다. <br>
+
+  사용자 프로세스가 운영 체제의 기능을 사용하기 위해서 `system call`을 사용하는데, <br>
+
+  이때 CPU는 `user mode` 에서 `system mode`로 전환된다.
+
+- **Interrupt** <br>
+
+  하드웨어 이벤트 혹은 소프트웨어에서 발생하는 예외 등이 발생할 때 일어난다. <br>
+
+  예를 들어, `time sharing` 에서의 `clock interrupt`, `I/O` 등이 있다. <br>
+
+  이러한 인터럽트는 OS에게 특정 이벤트가 발생함을 알리고, 처리를 요구한다. <br>
+
+  CPU는 현재 실행 중인 작업을 일시 중단하고, `ISR (Interrupt Service Routine)` <br>
+
+  을 실행하기 위해 `system mode`로 전환한다. 
+
+<br>
+
+# 👑 Process Creation
+
+OS는 부모 프로세스, 사용자, 혹은 OS의 요청으로 인해 새로운 프로세스를 <br>
+
+생성할 수 있다. 프로세스 생성은 다음과 같은 단계로 이루어진다. <br>
+
+1. 새 프로세스를 위한 `PCB` 생성
+
+2. 자식 프로세스에게 고유 프로세스 식별자(`PID`) 할당
+
+3. `PCB` 값 설정
+
+4. 새로운 프로세스를 부모, 형제 프로세스와 연결하는 적절한 링크 설정
+
+5. 기타 데이터 구조 생성 또는 확장
+
+6. 부모 프로세스의 `user context`를 복사하여 `user context` 생성
+
+7. 프로세스를 `ready state`로 설정 및 `ready queue`에 삽입
+
+8. 부모 프로세스에게 자식 프로세스의 `PID` 반환, 자식 프로세스에게는 0 반환
+
+<br>
+
+## 💡 COW (Copy and Write)
+
+- `COW mechanism` 은 메모리를 공유하는 프로세스들 사이에서 발생하는 <br>
+
+  데이터 복사를 최소화하기 위한 기술이다. <br>
+
+- 프로세스 생성 시에 새로운 프로세스는 부모 프로세스와 메모리를 공유한다. <br>
+
+  `fork() system call`을 통해 생성된 자식 프로세스는 처음에는 부모 프로세스와 <br>
+
+  같은 물리적인 메모리 페이지를 공유한다. (실제 데이터의 복사 X) <br>
+
+- 같은 메모리 페이지를 공유하다가 자식 프로세스가 메모리 페이지를 수정하려 할 때, <br>
+
+  해당 페이지를 복사하여 새로운 페이지를 할당하고, 메모리 공간이 분리되어 <br>
+
+  서로에게 영향을 주지 않게 된다. <br>
+
+<br>
+
+# 👑 Context Switch
+
+`Context switch`는 OS가 여러 프로세스를 동시에 실행하는 다중 작업 환경에서 <br>
+
+발생하는 중요한 개념이다. 현재 실행 중인 프로세스의 상태를 저장하고, 다음에 <br>
+
+실행할 프로세스의 상태를 로드하여 CPU의 제어를 전환하는 과정을 의미한다. <br>
+
+<br>
+
+## 💡 When to switch a process
+
+- **프로세스의 종료** <br>
+
+  에러나 예외가 발생하여 비정상적으로 종료되거나, 정상적으로 종료될 때 발생한다. <br>
+  이 경우 해당 프로세스는 `terminated` 상태로 전환되고, 새 프로세스가 `dispatch` 된다.
+
+- **블로킹 시스템 호출** <br>
+
+  `I/O request` 등과 같은 system call과 `page fault` 로 인해 발생 가능하다.
+
+- **Time slice** <br>
+
+   `Time sharing` 방식으로 인한 `clock interrupt` 발생으로 인해 `context switch`가 발생한다.
+
+- **I/O Interrupt** <br>
+
+  입출력 작업 완료 시 프로세스는 `block` 상태에서 `ready` 상태로 전환된다. <br>
+  이후에 `ready` 상태가 된 프로세스는 CPU를 할당받을 수 있다.
+
+<br>
+
+## 💡 Step of Context Switch
+
+1. **현재 프로세스 상태 저장** <br>
+
+  현재 실행 중인 프로세스의 레지스터 상태, `PCB` 정보, 스택 및 메모리 상태 등의 <br>
+
+  정보를 저장한다. 이 정보는 이전 상태로 복원될 때 계속 실행될 수 있도록 보존된다.
+
+2. **다음 프로세스 선택** <br>
+
+  `scheduler`가 다음에 실행할 프로세스를 선택한다.
+
+3. **다음 프로세스 상태 로드** <br>
+
+  선택된 다음 프로세스의 레지스터 상태, `PCB` 정보, 스택 및 메모리 상태 등을 <br>
+
+  CPU에 로드함으로써 다음 프로세스가 실행될 준비가 되도록 한다.
+
+4. **다음 프로세스 실행** <br>
+
+  CPU가 선택된 다음 프로세스의 코드를 실행한다.
+
+<br>
+
+## 💡 Mode Change VS Context Switch
+
+<center><img src="https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/0a91f336-715c-4006-917a-18ba6352893f"></center>
