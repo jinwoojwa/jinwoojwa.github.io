@@ -105,7 +105,9 @@ store register, counter (counter <- register)
 
 ## 💡 Race condition 예방
 
-어떻게 `Race condition`을 예방할 수 있을까? <br>
+어떻게 `Race condition`을 예방할 수 있을까? <br><br>
+
+
 
 
 
