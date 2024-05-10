@@ -236,7 +236,7 @@ do {
 
 ### 🚩 Test and Set Instruction (HW Solution)
 
-하드웨어적 방법으로는
+하드웨어적 방법으로는 Test and Set
 
 
 
