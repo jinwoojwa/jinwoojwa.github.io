@@ -1,9 +1,9 @@
 ---
-title: "DB"
+title: "SQL"
 layout: category
-permalink: /study/database/
+permalink: /study/sql/
 author_profile: true
-taxonomy: Database
+taxonomy: SQL
 sidebar:
   nav: "categories"
 ---
