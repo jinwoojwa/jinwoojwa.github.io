@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2024-05-12
-last_modified_at: 2024-05-12
+last_modified_at: 2024-05-28
 published: true
 ---
 
@@ -132,3 +132,57 @@ do {
 <br>
 
 ## 💡 Test and Set Instruction (HW Solution)
+
+`Test and Set` 명령어는 동기화 명령어 중 하나로, 하드웨어의 도움을 받아 `mutual exclusion`을 <br>
+
+수행하기 위한 `기계어(machine instruction)` 이다. `test-and-set` 명령어는 `atomically` 하게 <br>
+
+동작하여 명령어 실행 도중에 인터럽트 될 수 없다. [Test-and-set 참고자료](https://en.wikipedia.org/wiki/Test-and-set) <br><br>
+
+하드웨어에서 지원하는 원자적 연산으로, 동기화 문제를 간단하게 해결할 수 있다. <br>
+
+하지만, `busy waiting` 이 발생하여 CPU 자원을 낭비하게 되며, `bounded waiting` 이 발생할 <br>
+
+수도 있고, 데드락 역시 발생할 수 있다.
+
+<br>
+
+## 💡 Semaphores
+
+`Semaphore` 란 다중 스레드가 공통 자원에 접근하는 것을 제어하고, 동시성 시스템에서 <br>
+
+`critical section` 문제를 피하기 위해 사용하는 변수 또는 추상 데이터 타입이다. <br>
+
+`semaphore`는 주로 `Counting Semaphore`와 `Binary Semaphore or Mutex` 의 두 가지 형태로 <br>
+
+나눌 수 있다. 일반적으로 `semaphore`는 정수형 변수로 P 연산이라고도 불리는 `wait()` 와 <br>
+
+V 연산이라고도 불리는 `signal()` 을 통해 조작된다. <br>
+
+- `wait()` 연산 
+
+  + `semaphore`의 값을 감소시킴
+  + `semaphore`의 값이 음수가 되면, 해당 프로세스는 대기 상태로 전환시킨다.
+<br>
+
+- `signal()` 연산
+
+  + `semaphore`의 값을 증가시킴
+  + 대기 중인 프로세스가 있으면, 그 프로세스를 깨운다.
+
+`Counting Semaphore`는 주로 특정 자원의 가용 수를 관리하는 데 사용되며, 초기 세마포어 값은 <br>
+
+자원의 개수를 나타낸다. `Mutex` 라고도 불리는 `Binary Semaphore` 는 값을 0 또는 1로만 가질 수 <br>
+
+있으며, 단일 자원의 `mutual exclusion`을 보장하는 데 사용된다. <br><br>
+
+`Semaphore`는 비교적 간단하게 동기화를 구현하게 해주며, 다양한 형태로 다양한 상황에서 사용할 수 있다. <br>
+
+하지만, 잘못된 사용 시에 `Deadlock` 등의 문제를 초래할 수 있어 올바르게 사용해야 한다.
+
+
+
+
+
+
+
