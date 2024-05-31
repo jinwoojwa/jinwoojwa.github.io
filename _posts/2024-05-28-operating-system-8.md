@@ -13,7 +13,7 @@ toc: true
 toc_sticky: true
 
 date: 2024-05-28
-last_modified_at: 2024-05-28
+last_modified_at: 2024-05-31
 published: true
 ---
 
@@ -61,9 +61,7 @@ published: true
 
 `FCB`는 운영체제마다 구체적인 구현 방식이 다를 수 있으며, 유닉스 계열 `OS`에서는 <br>
 
-`inode`로 구현된다. `inode`는 파일의 메타데이터를 저장하는 데이터 구조로, 파일의 물리적 위치와 <br>
-
-속성 정보를 포함하고 있다.
+`inode`로 구현되며, Windows NT에서는 `Master File Table(MFT)`로 구현된다.
 
 <br>
 
@@ -140,6 +138,59 @@ mknod /dev/file_name [b/c] major_number minor_number
 - 메타데이터 관리
 
     + 파일의 메타데이터를 관리한다.
+
+<br>
+
+# 👑 File System
+
+운영체제의 `파일 시스템 (File System)`은 데이터 저장, 검색, 관리, 및 조직화 방법을 정의하는 <br>
+
+중요한 구성 요소이다. 파일 시스템은 하드 드라이브, SSD, USB 드라이브, CD/DVD 등 다양한 저장 <br>
+
+장치에서 작동하며, 사용자가 데이터를 효율적으로 저장하고 접근할 수 있도록 도와준다. <br>
+
+파일 시스템은 주로 2차 저장 장치(디스크)에 위치하며, 다음의 구성 요소를 포함한다. <br>
+
+- **Boot block**
+
+  + `OS` 부팅 시 필요한 정보를 저장하는 블록으로, 시스템이 시작할 때, 처음으로 읽어오는 부분이다.
+
+- **Partition control block (super block)**
+
+  + 파일 시스템에 관한 정보를 담고 있는 블록으로, 파일 시스템의 전체적인 구조와 상태 정보를 포함한다.
+
+    * **파일 시스템의 크기(블록 수)**
+    * **파일 시스템 내의 빈 데이터 블록 수**
+    * **빈 데이터 블록의 목록**
+    * **파일 시스템에 있는 전체 inode의 개수**
+    * **빈 inode의 수**
+    * **빈 inode의 목록**
+
+- **Directory structure**
+
+  + 파일 시스템 내에서 파일과 디렉토리를 조직화하여 계층적으로 배치한다.
+
+- **File control blocks (Inode list)**
+
+  + 각 파일에 대한 `FCB`를 포함한다.
+
+  + `Unix/Linux` 에서 하나의 `inode`의 크기는 128 bytes
+
+  + 즉, `Inode list`는 하나당 128 bytes의 크기를 갖는 `inode`들의 배열이다.
+
+  <center><img src="https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/b762ff22-fed1-4fd6-9d9d-c9a327e9aae3" width="500"></center>
+
+- **Data blocks**
+
+  + 실제 데이터가 저장되는 블록이다.
+
+<br>
+
+## 💡 주요 운영체제의 파일 시스템 구조
+
+<img src="https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/32afa3d2-86f1-4419-8dea-0e2c1650ba5b">
+
+
 
 
 
