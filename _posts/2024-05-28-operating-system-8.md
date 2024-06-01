@@ -7,7 +7,7 @@ categories:
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-file/
+permalink: /operating-system/os-file-system1/
 
 toc: true
 toc_sticky: true
