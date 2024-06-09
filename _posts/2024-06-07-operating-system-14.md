@@ -107,3 +107,6 @@ published: true
 
 <center><img src="https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/9433465c-2b78-43b9-a839-ac1b4bce7bdb" width="600"></center>
 
+<br>
+
+## 💡 RAID 4
