@@ -250,7 +250,7 @@ published: true
 - 베이스 레지스터의 값은 각 프로세스가 실제 물리 메모리에서 어느 위치에 로드되었는지를 나타내므로, <br>
   논리 주소를 물리 주소로 변환할 때 사용한다.
 
-**Limit Registe = Bound register**
+**Limit Register = Bound register**
 
 - 프로세스가 사용할 수 있는 메모리 범위를 지정한다.
 
