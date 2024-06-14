@@ -1,5 +1,5 @@
 ---
-title: "[OS] Paging"
+title: "[OS] Paging & Segmentation"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
@@ -7,14 +7,14 @@ categories:
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-paging/
+permalink: /operating-system/os-paging-segmentation/
 
 toc: true
 toc_sticky: true
 use_math: true
 
 date: 2024-06-12
-last_modified_at: 2024-06-12
+last_modified_at: 2024-06-14
 published: true
 ---
 
@@ -95,4 +95,94 @@ published: true
 
 <br>
 
-# 👑
+# 👑 Segmentation
+
+`Segmentation`은 OS가 메모리를 관리하는 방법 중 하나로, 프로그램과 데이터의 논리적 구조를 <br>
+
+반영하여 메모리를 다루는 기법이다. 프로그램을 `Segment`라는 단위로 나눠 관리한다. <br>
+
+**Segment**
+
+- 세그먼트는 프로그램과 데이터가 논리적으로 구분된 블록이다. 예를 들어, 코드 세그먼트, 데이터 <br>
+  세그먼트, 스택 세그먼트 등이 있다.
+  
+- 각 세그먼트는 동일한 유형의 데이터를 포함하며, `크기가 서로 다를 수 있다.`
+
+**Segment Table**
+
+- 각 세그먼트는 세그먼트 테이블에 의해 관리된다.
+
+- 세그먼트 테이블에는 각 세그먼트의 `시작 주소(base address)`와 `길이(limit)`가 저장된다.
+
+- 이를 통해 특정 세그먼트에 접근할 때 물리적 메모리 주소를 계산할 수 있다.
+
+<br>
+
+**Segmentation의 특징**
+
+- `dynamic partitioning` 방법과 유사하다. (segment이 곧 파티션)
+
+- 동적 할당과의 차이점은 `segmentation`의 경우 프로그램이 하나 이상의 파티션을 차지할 수 <br>
+  있고, 파티션들이 연속적일 필요는 없다는 것이다.
+
+- 내부 단편화가 없지만, 외부 단편화가 존재한다. (외부 단편화가 상대적으로 적긴 함)
+
+- 페이징 기법에서와 같이 `logical address`를 `segment number`와 `offset`으로 나눈다.
+
+- 사용자 프로그램의 전체 크기는 모든 세그먼트 크기의 합과 같다. <br>
+  e.g. 코드 세그먼트 = 10KB, 데이터 세그먼트 = 5KB, 스택 세그먼트 = 2KB라면, <br>
+  전체 프로그램 = 17KB
+
+<center><img src="https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/d7a9efd9-4c66-45ac-821c-386ce2f34b37"></center>
+
+<br>
+
+## 💡 Address Translation in Segmentation
+
+`Paging` 방법처럼 `logical address`를 두 영역 `segment number`와 `offset`로 나눠 <br>
+
+`physical address`로 변환하는 `translation`을 수행한다. <br><br>
+
+**가정**
+
+- Segment의 최대 크기 = 4 KB
+
+- `logical address` 크기 = 16 bits
+
+- 사용자 프로세스의 크기 = 2700 bytes
+
+- segment 0의 크기 = 750 bytes
+
+- segment 1의 크기 = 1950 bytes
+
+- 프로세스의 `relative address` = 1502
+
+<br>
+
+**풀이**
+
+우선 `segment`의 최대 크기가 4 KB = $ 2^{12} $ 이므로, `offset`을 나타내기 위해서는 <br>
+
+12 bits 가 필요하다. 따라서, 16 bits 논리 주소에서 4 bits를 segment number에 사용한다. <br><br>
+
+`segment 0`의 크기가 750 bytes이므로, 상대 주소 1502는 `segment 1`에 위치할 것이다. <br>
+
+또한, `segment 1`에서 752(1502 - 750)만큼 떨어진 위치에 존재할 것이므로, `offset`은 752이다. <br><br>
+
+$ 752_{10} = 001011110000_2 $ -> `offset`
+
+<center><img src="https://github.com/jinwoojwa/jinwoo.github.io/assets/112393728/1ce4b399-e31a-4852-aa06-cb59bc3e65bd"></center>
+
+<br>
+
+# 👑 요약
+
+메모리 관리는 `OS`의 가장 중요하고 복잡한 일 중 하나로 여러 장치들을 효율적으로 사용하기 <br>
+
+위해서는 가능한 한 많은 프로세스들을 메인 메모리에 유지하는 것이 바람직하다. <br>
+
+메모리 관리의 기본적인 방법인 `paging`과 `segmentation`이 있다. <br>
+
+`paging`은 프로세스를 고정된 크기의 `page`로 나누며, `segmentation`은 크기가 동일하지 않은 <br>
+
+`segment`로 나눠 사용한다. 하나의 메모리 관리 기법 안에서 둘을 결합하여 사용하는 것도 가능하다.
