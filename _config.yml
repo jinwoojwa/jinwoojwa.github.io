@@ -19,11 +19,11 @@ minimal_mistakes_skin: "plum" # "default" "air", "aqua", ...
 
 # Site Settings
 locale: "ko-KR" #"en-US"
-title: "Jinw00s DevLog" # 상단 헤더에 보이는 블로그 명
+title: "jinw00s DevLog" # 상단 헤더에 보이는 블로그 명
 title_separator: "&#124;"
 subtitle: # site tagline that appears below site title in masthead
-name: "Jinw00" # 블로그 닉네임 설정
-description: "Jinw00s DevLog" # 블로그 설명
+name: "jinw00" # 블로그 닉네임 설정
+description: "jinw00s DevLog" # 블로그 설명
 url: "https://jinwoo.github.io/" # 블로그 URL
 baseurl: # the subpath of your site, e.g. "/blog"
 repository: "jinwoojwa/jinwoo.github.io" # GitHub Repo 이름
@@ -98,7 +98,7 @@ analytics:
 
 # Site Author
 author:
-  name: "Jinw00" # 블로그 닉네임
+  name: "jinw00" # 블로그 닉네임
   avatar: "/assets/images/avatar.png" # 블로그 프로필 사진
   #   bio              : "hi all!"
   # location         : "Seoul, Korea"
