@@ -58,7 +58,7 @@ published: true
 
 **UNIX PTE의 제어 비트**
 
-운영체제마다 `PTE` 의 구조는 다를 수 있다. 다음은 `UNIX PTE`의 제어비트들이다.
+운영체제마다 `PTE` 의 구조는 다를 수 있다. 다음은 `UNIX PTE`의 제어비트들의 종류이다.
 
 - `Age`
 
