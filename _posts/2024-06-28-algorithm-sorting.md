@@ -142,6 +142,6 @@ void insertion_sort(int list[], int n) {
 
 <br>
 
-# 
+# 퀵 정렬 (Quick Sort)
 
 
