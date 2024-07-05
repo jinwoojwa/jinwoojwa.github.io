@@ -1,3 +1,3 @@
-# 🎉Jinw00's Devlog 🎉
+# 🎉jinw00's Devlog 🎉
 
-📎**⚙ 블로그 링크** : https://jinwoojwa.github.io/jinwoo.github.io/
+**📎⚙ 블로그 링크** : https://jinwoojwa.github.io/
