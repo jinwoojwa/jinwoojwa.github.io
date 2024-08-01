@@ -1,5 +1,5 @@
 ---
-title: "Hash Function"
+title: "해시 (Hash)"
 excerpt: "[C++]자료구조 - Hash"
 
 categories:
