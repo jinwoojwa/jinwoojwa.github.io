@@ -14,7 +14,7 @@ toc_sticky: true
 use_math: true
 
 date: 2024-08-09
-last_modified_at: 2024-08-09
+last_modified_at: 2024-08-15
 published: true
 ---
 
@@ -90,7 +90,7 @@ published: true
 
 <br>
 
-### 🌳 
+### 🌳 이진 탐색 트리 (Binary Search Tree, BST)
 
 
 
