@@ -23,8 +23,6 @@ categories:
         url: /study/algorithm/
       - title: "Data Structure"
         url: /study/data-structure/
-      - title: "Baekjoon"
-        url: /study/baekjoon/
       - title: "Markdown"
         url: /study/markdown/
       - title: "Operating System"
@@ -35,6 +33,13 @@ categories:
         url: /study/programming-language/
       - title: "C++"
         url: /study/cplusplus/
+    
+  - title: "알고리즘 문제풀이"
+    children:
+      - title: "Baekjoon"
+        url: /ps/baekjoon/
+      - title: "Programmers"
+        url: /ps/programmers/
         
   - title: "모각코"
     url: /categories/mogakco/
