@@ -3,7 +3,7 @@ title: "재귀 (Recursion)"
 excerpt: "[C++]Recursion"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

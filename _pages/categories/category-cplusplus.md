@@ -1,7 +1,7 @@
 ---
 title: "C++"
 layout: category
-permalink: /study/cplusplus/
+permalink: /categories/cplusplus/
 author_profile: true
 taxonomy: C++
 sidebar:

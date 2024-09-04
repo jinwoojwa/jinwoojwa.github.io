@@ -1,7 +1,7 @@
 ---
 title: "SQL"
 layout: category
-permalink: /study/sql/
+permalink: /categories/sql/
 author_profile: true
 taxonomy: SQL
 sidebar:

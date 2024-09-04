@@ -3,7 +3,7 @@ title: "투 포인터 알고리즘"
 excerpt: "Two-Pointer Algorithm"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

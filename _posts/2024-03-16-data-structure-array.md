@@ -3,7 +3,7 @@ title: "배열 (Array)"
 excerpt: "[C++]자료구조 - 배열"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

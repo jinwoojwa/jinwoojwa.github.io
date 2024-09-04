@@ -3,7 +3,7 @@ title: "정렬 알고리즘 (Sorting)"
 excerpt: "[C++]Sorting"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

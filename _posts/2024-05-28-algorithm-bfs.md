@@ -3,7 +3,7 @@ title: "BFS 알고리즘"
 excerpt: "[C++]BFS : Breadth-First Search"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

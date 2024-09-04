@@ -3,7 +3,7 @@ title: "연결 리스트 (Linked List)"
 excerpt: "[C++]자료구조 - 연결 리스트"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

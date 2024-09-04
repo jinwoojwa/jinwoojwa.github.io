@@ -3,7 +3,7 @@ title: "구간 합 알고리즘"
 excerpt: "구간 합 알고리즘 (Prefix Sum)"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

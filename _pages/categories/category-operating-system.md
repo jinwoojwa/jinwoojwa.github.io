@@ -1,9 +1,9 @@
 ---
-title: "Operating System"
+title: "운영체제"
 layout: category
-permalink: /study/operating-system/
+permalink: /categories/operating-system/
 author_profile: true
-taxonomy: Operating System
+taxonomy: 운영체제
 sidebar:
   nav: "categories"
 ---

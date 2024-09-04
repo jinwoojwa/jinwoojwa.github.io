@@ -19,18 +19,18 @@ main:
 categories:
   - title: "STUDY"
     children:
+      - title: "자료구조"
+        url: /categories/data-structure/
       - title: "알고리즘"
         url: /categories/algorithm/
-      - title: "Data Structure"
-        url: /categories/data-structure/
-      - title: "Operating System"
+      - title: "운영체제"
         url: /categories/operating-system/
-      - title: "SQL"
-        url: /categories/sql/
-      - title: "Programming Language"
+      - title: "프로그래밍언어론"
         url: /categories/programming-language/
       - title: "C++"
         url: /categories/cplusplus/
+      - title: "SQL"
+        url: /categories/sql/
       - title: "Markdown"
         url: /categories/markdown/
     

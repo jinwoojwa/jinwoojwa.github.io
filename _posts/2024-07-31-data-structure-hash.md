@@ -3,7 +3,7 @@ title: "해시 (Hash)"
 excerpt: "[C++]자료구조 - Hash"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

@@ -3,7 +3,7 @@ title: "이진 탐색 트리 (Binary Search Tree)"
 excerpt: "[C++]자료구조 - BST"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

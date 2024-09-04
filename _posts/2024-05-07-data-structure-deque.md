@@ -3,7 +3,7 @@ title: "덱 (Deque)"
 excerpt: "[C++]자료구조 - 덱"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

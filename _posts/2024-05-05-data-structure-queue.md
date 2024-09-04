@@ -3,7 +3,7 @@ title: "큐 (Queue)"
 excerpt: "[C++]자료구조 - 큐"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

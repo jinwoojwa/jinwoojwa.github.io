@@ -3,7 +3,7 @@ title: "[OS] I/O Management"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - Operating System
+  - 운영체제
 tags:
   - [Operating System]
 

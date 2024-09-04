@@ -3,7 +3,7 @@ title: "이분 탐색 (Binary Search)"
 excerpt: "[C++]Binary Search Algorithm"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

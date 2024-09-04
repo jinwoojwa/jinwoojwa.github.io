@@ -3,7 +3,7 @@ title: "스택 (Stack)"
 excerpt: "[C++]자료구조 - 스택"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

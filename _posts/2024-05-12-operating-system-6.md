@@ -3,7 +3,7 @@ title: "[OS] Concurrency : Critical Section Problem"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - Operating System
+  - 운영체제
 tags:
   - [Operating System]
 

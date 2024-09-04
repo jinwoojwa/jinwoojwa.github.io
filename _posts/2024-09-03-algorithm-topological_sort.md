@@ -3,7 +3,7 @@ title: "위상 정렬 (Topological Sort)"
 excerpt: "[C++]Topological Sort"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

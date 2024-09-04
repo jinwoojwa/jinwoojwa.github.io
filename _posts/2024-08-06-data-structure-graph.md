@@ -3,7 +3,7 @@ title: "그래프 (Graph)"
 excerpt: "[C++]자료구조 - graph"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

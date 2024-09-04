@@ -3,7 +3,7 @@ title: "동적 계획법 (Dynamic Programming)"
 excerpt: "[C++]Dynamic Programming"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 

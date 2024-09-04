@@ -3,7 +3,7 @@ title: "트리 구조 (Tree)"
 excerpt: "[C++]자료구조 - 트리"
 
 categories:
-  - Data Structure
+  - 자료구조
 tags:
   - [Data Structure]
 

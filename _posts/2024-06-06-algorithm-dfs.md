@@ -3,7 +3,7 @@ title: "DFS 알고리즘"
 excerpt: "[C++]DFS : Depth-First Search"
 
 categories:
-  - Algorithm
+  - 알고리즘
 tags:
   - [algorithm]
 
