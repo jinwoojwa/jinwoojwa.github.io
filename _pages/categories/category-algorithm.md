@@ -1,9 +1,9 @@
 ---
-title: "Algorithm"
+title: "알고리즘"
 layout: category
-permalink: /study/algorithm/
+permalink: /categories/algorithm/
 author_profile: true
 taxonomy: Algorithm
 sidebar:
-  nav: "categories"
+nav: "categories"
 ---

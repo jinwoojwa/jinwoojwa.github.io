@@ -19,20 +19,20 @@ main:
 categories:
   - title: "STUDY"
     children:
-      - title: "Algorithm"
-        url: /study/algorithm/
+      - title: "알고리즘"
+        url: /categories/algorithm/
       - title: "Data Structure"
-        url: /study/data-structure/
-      - title: "Markdown"
-        url: /study/markdown/
+        url: /categories/data-structure/
       - title: "Operating System"
-        url: /study/operating-system/
+        url: /categories/operating-system/
       - title: "SQL"
-        url: /study/sql/
+        url: /categories/sql/
       - title: "Programming Language"
-        url: /study/programming-language/
+        url: /categories/programming-language/
       - title: "C++"
-        url: /study/cplusplus/
+        url: /categories/cplusplus/
+      - title: "Markdown"
+        url: /categories/markdown/
     
   - title: "알고리즘 문제풀이"
     children:
