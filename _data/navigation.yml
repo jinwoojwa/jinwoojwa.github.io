@@ -27,6 +27,8 @@ categories:
         url: /categories/operating-system/
       - title: "프로그래밍언어론"
         url: /categories/programming-language/
+      - title: "컴파일러"
+        url: /categories/compiler/
       - title: "C++"
         url: /categories/cplusplus/
       - title: "SQL"
