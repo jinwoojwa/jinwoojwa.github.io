@@ -29,6 +29,8 @@ categories:
         url: /categories/programming-language/
       - title: "컴파일러"
         url: /categories/compiler/
+      - title: "컴퓨터그래픽스"
+        url: /categories/cg/
       - title: "C++"
         url: /categories/cplusplus/
       - title: "SQL"
