@@ -14,7 +14,7 @@ toc_sticky: true
 use_math: true
 
 date: 2024-10-11
-last_modified_at: 2024-10-11
+last_modified_at: 2024-10-14
 ---
 
 # 👑 신장 트리 (Spanning Tree)
@@ -67,7 +67,7 @@ last_modified_at: 2024-10-11
 
 `최소 신장 트리`를 구하는 대표적인 알고리즘으로는 `크루스칼 알고리즘 (Kruskal's Algorithm)`과 <br>
 
-`프림 알고리즘 (Prim's Algorithm)` 이 있다.
+`프림 알고리즘 (Prim's Algorithm)` 이 있다. 
 
 
 
