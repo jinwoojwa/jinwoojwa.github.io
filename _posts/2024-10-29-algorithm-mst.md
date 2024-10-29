@@ -14,7 +14,7 @@ toc_sticky: true
 use_math: true
 
 date: 2024-10-29
-last_modified_at: 2024-10-29
+last_modified_at: 2024-10-30
 ---
 
 # 👑 신장 트리 (Spanning Tree)
@@ -181,5 +181,117 @@ MST의 간선의 개수가 `노드 개수 - 1 = 6`개가 되었으므로, 알고
 
 # 👑 프림 알고리즘 (Prim's algorithm)
 
+**프림(Prim) 알고리즘은** MST를 찾는 방법 중 하나로, 가중치가 있는 연결 그래프에서 모든 정점을 <br>
 
+포함하면서 가중치의 합이 최소가 되는 트리를 만드는 방법이다. 크루스칼 알고리즘이 간선을 중심으로 <br>
+
+MST를 만드는 반면, 프림 알고리즘은 정점을 중심으로 MST를 확장해 나간다.
+
+<br>
+
+프림 알고리즘은 다음과 같이 동작한다.
+
+1. 임의의 정점을 선택하여 MST에 추가하고 시작한다.
+
+2. 현재 MST에 포함된 정점에서 인접한 정점 중 **가장 작은 가중치**를 가진 간선을 선택한다.
+
+3. 선택한 간선에 연결된 새로운 정점을 MST에 추가한다.
+
+4. 모든 정점이 MST에 포함될 때까지 2~3 단계를 반복한다.
+
+이 과정에서, 이미 MST에 포함된 정점 집합과 아직 포함되지 않은 정점 집합 간의 최소 가중치 간선을 <br>
+
+선택하는 방식으로 트리를 확장해 나간다.
+
+<br><br>
+
+## 💡 동작 과정
+
+<center><img src="https://github.com/user-attachments/assets/c09d61ab-2fb2-4d6d-be69-f284ce051b5c" width="500"></center>
+
+위 그래프에서 `프림 알고리즘`을 통해 MST를 구하는 과정은 다음과 같다.
+
+<br>
+
+**Step 1**
+
+임의의 점을 선택하여 시작한다. (정점 0을 선택)
+
+<center><img src="https://github.com/user-attachments/assets/9c1769e4-af15-4e7d-97aa-ac60b2c87235" width="500"></center>
+
+<br>
+
+**Step 2**
+
+현재 MST에 포함된 정점(0)에서 인접한 간선 `0-1`, `0-5` 중 가중치가 가장 작은 `0-1`을 선택하고, <br>
+
+간선과 정점 `1`을 MST에 포함한다.
+
+<center><img src="https://github.com/user-attachments/assets/bd525627-f9d2-432c-b8d8-b5c405b29cc2" width="500"></center>
+
+<br>
+
+**Step 3**
+
+현재 MST에 포함된 정점(0, 1)에서 인접한 간선 `0-5`, `1-6`, `1-2` 중 가중치가 가장 작은 `1-6`을 <br>
+
+선택하고, 간선과 정점 `6`을 MST에 포함한다.
+
+<center><img src="https://github.com/user-attachments/assets/5fc63e13-8b1f-4eb9-928c-2fe4ff13309b" width="500"></center>
+
+<br>
+
+**Step 4**
+
+현재 MST에 포함된 정점(0, 1, 6)에서 인접한 간선 `0-5`, `1-2`, `5-6`, `6-3` 중 가중치가 가장 작은 <br>
+
+`0-5`을 선택하고, 간선과 정점 `5`을 MST에 포함한다.
+
+<center><img src="https://github.com/user-attachments/assets/a369bfd5-ceac-4c9a-b6d3-d376bfaba1b0" width="500"></center>
+
+<br>
+
+**Step 5**
+
+현재 MST에 포함된 정점(0, 1, 5, 6)에서 인접한 간선 `5-6`, `1-2`, `6-3`, `5-4` 중 가중치가 가장 작은 <br>
+
+`5-4`을 선택하고, 간선과 정점 `4`을 MST에 포함한다.
+
+<center><img src="https://github.com/user-attachments/assets/9e0e0b46-e7ab-4eca-9a4c-9b20eb400a6c" width="500"></center>
+
+<br>
+
+**Step 6**
+
+현재 MST에 포함된 정점(0, 1, 4, 5, 6)에서 인접한 간선 `1-2`, `6-3`, `4-2`, `4-3` 중 가중치가 가장 작은 <br>
+
+`4-2`을 선택하고, 간선과 정점 `2`을 MST에 포함한다.
+
+<center><img src="https://github.com/user-attachments/assets/0160c52b-1441-4559-9788-ced692deebb0" width="500"></center>
+
+<br>
+
+**Step 7**
+
+현재 MST에 포함된 정점(0, 1, 2, 4, 5, 6)에서 인접한 간선 `6-3`, `4-3` 중 가중치가 가장 작은 <br>
+
+`6-3`을 선택하고, 간선과 정점 `3`을 MST에 포함한다.
+
+<center><img src="https://github.com/user-attachments/assets/66ff92cd-e03f-4842-97be-c6a029b5c93a" width="500"></center>
+
+<br>
+
+**결과**
+
+<center><img src="https://github.com/user-attachments/assets/caf3ed93-6952-45a0-9398-ff8e32e22036" width="500"></center>
+
+<br><br>
+
+## 💡 구현[C++, Java]
+
+<script src="https://gist.github.com/jinwoojwa/c43fd0ca2416dab0b77ff61ce10fec92.js"></script>
+
+<br>
+
+<script src="https://gist.github.com/jinwoojwa/8053499103894e225c1514288fe3c07f.js"></script>
 
