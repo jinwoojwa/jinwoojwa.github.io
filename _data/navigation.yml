@@ -35,6 +35,8 @@ categories:
         url: /categories/software-engineering/
       - title: "C++"
         url: /categories/cplusplus/
+      - title: "Java"
+        url: /categories/java/
       - title: "SQL"
         url: /categories/sql/
       - title: "Markdown"
