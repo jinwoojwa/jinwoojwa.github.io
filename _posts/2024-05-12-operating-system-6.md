@@ -3,17 +3,17 @@ title: "[OS] Concurrency : Critical Section Problem"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - 운영체제
+  - CS
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-critical-section/
+permalink: /cs/operating_system06/
 
 toc: true
 toc_sticky: true
 
 date: 2024-05-12
-last_modified_at: 2024-05-28
+last_modified_at: 2025-05-05
 published: true
 ---
 

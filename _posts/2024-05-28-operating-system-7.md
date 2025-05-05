@@ -3,17 +3,17 @@ title: "[OS] Deadlock"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - 운영체제
+  - CS
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-deadlock/
+permalink: /cs/operating_system07/
 
 toc: true
 toc_sticky: true
 
 date: 2024-05-28
-last_modified_at: 2024-05-28
+last_modified_at: 2025-05-05
 published: true
 ---
 

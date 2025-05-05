@@ -3,18 +3,18 @@ title: "[OS] File System - Management of Data Blocks"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - 운영체제
+  - CS
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-file-system2/
+permalink: /cs/operating_system09/
 
 toc: true
 toc_sticky: true
 use_math: true
 
 date: 2024-05-31
-last_modified_at: 2024-06-04
+last_modified_at: 2025-05-05
 published: true
 ---
 

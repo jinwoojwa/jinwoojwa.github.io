@@ -1,9 +1,9 @@
 ---
-title: "Baekjoon"
+title: "CS"
 layout: category
-permalink: /ps/baekjoon/
+permalink: /categories/cs/
 author_profile: true
-taxonomy: Baekjoon
+taxonomy: CS
 sidebar:
   nav: "categories"
 ---

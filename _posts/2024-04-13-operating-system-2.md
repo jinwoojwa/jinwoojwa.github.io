@@ -3,17 +3,17 @@ title: "[OS] 프로세스 (Process)"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - 운영체제
+  - ComputerScience
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-process/
+permalink: /cs/operating_system02/
 
 toc: true
 toc_sticky: true
 
 date: 2024-04-13
-last_modified_at: 2024-04-23
+last_modified_at: 2025-05-05
 published: true
 ---
 

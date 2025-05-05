@@ -22,16 +22,6 @@ categories:
       - title: "자료구조"
         url: /categories/data-structure/
       - title: "알고리즘"
-        url: /categories/algorithm/
-      - title: "운영체제"
-        url: /categories/operating-system/
-      - title: "프로그래밍언어론"
-        url: /categories/programming-language/
-      - title: "컴파일러"
-        url: /categories/compiler/
-      - title: "컴퓨터그래픽스"
-        url: /categories/cg/
-      - title: "소프트웨어공학"
         url: /categories/software-engineering/
       - title: "C++"
         url: /categories/cplusplus/
@@ -43,6 +33,8 @@ categories:
         url: /categories/sql/
       - title: "Markdown"
         url: /categories/markdown/
+      - title: CS
+        url: /categories/cs
     
   - title: "알고리즘 문제풀이"
     children:

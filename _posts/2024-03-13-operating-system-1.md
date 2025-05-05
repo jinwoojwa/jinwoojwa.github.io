@@ -3,17 +3,17 @@ title: "[OS] 운영체제와 운영체제의 발전 과정"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - 운영체제
+  - CS
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-overview1/
+permalink: /cs/operating_system01/
 
 toc: true
 toc_sticky: true
 
 date: 2024-03-14
-last_modified_at: 2024-04-10
+last_modified_at: 2025-05-05
 published: true
 ---
 

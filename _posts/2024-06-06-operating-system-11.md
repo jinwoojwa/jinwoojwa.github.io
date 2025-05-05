@@ -3,18 +3,18 @@ title: "[OS] Interrupt"
 excerpt: "Operating Systems, Internals and Design Principles 정리"
 
 categories:
-  - 운영체제
+  - CS
 tags:
   - [Operating System]
 
-permalink: /operating-system/os-interrupt/
+permalink: /cs/operating_system11/
 
 toc: true
 toc_sticky: true
 use_math: true
 
 date: 2024-06-06
-last_modified_at: 2024-06-06
+last_modified_at: 2025-05-05
 published: true
 ---
 
