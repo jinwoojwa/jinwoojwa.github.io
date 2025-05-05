@@ -37,6 +37,8 @@ categories:
         url: /categories/cplusplus/
       - title: "Java"
         url: /categories/java/
+      - title: "Spring"
+        url: /categories/spring/
       - title: "SQL"
         url: /categories/sql/
       - title: "Markdown"
