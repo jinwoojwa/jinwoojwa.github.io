@@ -35,6 +35,8 @@ categories:
         url: /categories/markdown/
       - title: CS
         url: /categories/cs
+      - title: "개발 용어 정리"
+        url: /categories/dev-terms/
     
   - title: "알고리즘 문제풀이"
     children:
