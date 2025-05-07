@@ -1,9 +1,9 @@
 ---
-title: "Java"
+title: "Baekjoon"
 layout: category
-permalink: /categories/java/
+permalink: /categories/baekjoon/
 author_profile: true
-taxonomy: Java
+taxonomy: Baekjoon
 sidebar:
   nav: "categories"
 ---

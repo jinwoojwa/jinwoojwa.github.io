@@ -22,7 +22,7 @@ categories:
       - title: "자료구조"
         url: /categories/data-structure/
       - title: "알고리즘"
-        url: /categories/software-engineering/
+        url: /categories/algorithm/
       - title: "C++"
         url: /categories/cplusplus/
       - title: "Java"
@@ -41,9 +41,9 @@ categories:
   - title: "알고리즘 문제풀이"
     children:
       - title: "Baekjoon"
-        url: /ps/baekjoon/
+        url: /categories/baekjoon/
       - title: "Programmers"
-        url: /ps/programmers/
+        url: /categories/programmers/
         
   - title: "모각코"
     url: /categories/mogakco/
