@@ -34,7 +34,15 @@ export const posts = Object.entries(modules).map(([path, content]) => {
   frontmatter.split('\n').forEach((line) => {
     const [key, ...value] = line.split(':');
     if (!key) return;
-    data[key.trim()] = value.join(':').trim();
+
+    const val = value.join(':').trim();
+
+    // tags 키인 경우 배열로 변환
+    if (key.trim() === 'tags') {
+      data[key.trim()] = val ? val.split(',').map((tag) => tag.trim()) : [];
+    } else {
+      data[key.trim()] = val;
+    }
   });
 
   // markdown 본문 추출

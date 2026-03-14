@@ -13,9 +13,48 @@ const post = posts.find((p) => p.slug === route.params.slug);
   <div v-if="post" class="container">
     <article class="markdown-body">
       <h1>{{ post.title }}</h1>
+
+      <div class="post-info">
+        <div class="post-tags" v-if="post.tags">
+          <span v-for="tag in post.tags" :key="tag">#{{ tag }}</span>
+        </div>
+        <span class="date">{{ post.date }}</span>
+      </div>
+
+      <hr class="post-divider" />
+
       <div v-html="post.content"></div>
     </article>
   </div>
 
   <NotFound v-else />
 </template>
+
+<style scoped>
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #8b949e;
+  font-size: 0.9rem;
+}
+
+.date {
+  color: #8b949e;
+  font-size: 0.9rem;
+}
+
+.post-divider {
+  border: 0;
+  height: 1px;
+  background-color: #30363d;
+  margin: 40px auto;
+}
+</style>
