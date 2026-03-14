@@ -21,7 +21,6 @@ export const posts = Object.entries(modules).map(([path, content]) => {
   const slug = path.split('/').pop().replace('.md', '');
 
   return {
-    slug,
     ...data,
     content: markdown,
   };
