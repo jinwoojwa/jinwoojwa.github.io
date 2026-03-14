@@ -18,7 +18,7 @@ import { posts } from '../utils/posts';
    Post Card (포스트 목록)
    =============================== */
 .post-card {
-  border: 1px solid #e1e4e8;
+  border: 1px solid #30363d;
   border-radius: 6px;
   padding: 20px;
   margin-bottom: 20px;
@@ -26,7 +26,8 @@ import { posts } from '../utils/posts';
 }
 
 .post-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #8b949e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .post-card h2 {
@@ -35,13 +36,12 @@ import { posts } from '../utils/posts';
 
 .post-card p {
   margin-bottom: 0;
-  color: #57606a;
+  color: #8b949e;
 }
 
-/* 카드 내부 링크 기본 스타일 제거 (글씨색 유지, 밑줄 제거) */
 .post-card a {
   text-decoration: none;
   color: inherit;
-  display: block; /* 클릭 영역을 카드 전체로 넓힘 */
+  display: block;
 }
 </style>

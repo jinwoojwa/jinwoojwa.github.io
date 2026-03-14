@@ -1,23 +1,32 @@
 @import 'modern-css-reset';
 
-/* ===============================
-   Container
-   =============================== */
+/* Google Fonts : Nanum Gothic Coding */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
 
+/* 전역 폰트 설정 */
+body {
+  font-family: 'Nanum Gothic Coding', monospace;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 기본 글자색, 배경 */
+  color: #c9d1d9;
+  background-color: #0d1117;
+}
+
+/* Container */
 .container {
   max-width: 760px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* ===============================
-   Markdown Body (PostDetail)
-   =============================== */
-
+/* Markdown Body (PostDetail) */
 .markdown-body {
   line-height: 1.7;
   font-size: 1rem;
-  color: #24292f;
+  color: #c9d1d9;
 }
 
 .markdown-body h1 {
@@ -29,10 +38,32 @@
   margin-bottom: 1em;
 }
 
-.markdown-body code {
-  background-color: #f6f8fa;
-  padding: 2px 4px;
+/* 인라인 코드 스타일 (문장 중간에 들어가는 `코드`) */
+.markdown-body :not(pre) > code {
+  background-color: #2d333b;
+  color: #58a6ff;
+  padding: 0.2em 0.4em;
   border-radius: 4px;
+  font-size: 85%;
+}
+
+/* 코드 블록 스타일 (백틱 3개로 감싼 여러 줄 코드) */
+.markdown-body pre {
+  background-color: #1e1e1e;
+  border: 1px solid #444c56;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+/* 코드 블록 내부 글자 크기 살짝 조정 */
+.markdown-body pre code {
+  font-size: 90%;
+  color: #e6edf3;
+  background-color: transparent;
 }
 
 /* ===============================

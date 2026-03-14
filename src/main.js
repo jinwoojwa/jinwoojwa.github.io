@@ -2,6 +2,9 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 
+// highlight.js 다크 테마 CSS
+import 'highlight.js/styles/github-dark.css';
+
 // CSS
 import './assets/css/main.css';
 

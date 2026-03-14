@@ -32,7 +32,7 @@ nav {
 nav a {
   margin: 0 10px;
   text-decoration: none;
-  color: #0366d6;
+  color: #58a6ff;
 }
 
 nav a:hover {
