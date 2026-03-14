@@ -1,0 +1,8 @@
+@import 'modern-css-reset';
+@import 'github-markdown-css/github-markdown.css';
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
