@@ -1,11 +1,14 @@
+<script setup>
+import AppHeader from './components/AppHeader.vue';
+import AppFooter from './components/AppFooter.vue';
+</script>
+
 <template>
-  <div>
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/detail">PostDetail</router-link>
-    </nav>
+  <div class="container">
+    <AppHeader />
 
     <router-view />
+
+    <AppFooter />
   </div>
 </template>

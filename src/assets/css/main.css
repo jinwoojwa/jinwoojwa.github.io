@@ -1,8 +1,46 @@
 @import 'modern-css-reset';
-@import 'github-markdown-css/github-markdown.css';
+
+/* ===============================
+   Container
+   =============================== */
 
 .container {
   max-width: 760px;
   margin: 0 auto;
   padding: 40px 20px;
+}
+
+/* ===============================
+   Markdown Body (PostDetail)
+   =============================== */
+
+.markdown-body {
+  line-height: 1.7;
+  font-size: 1rem;
+  color: #24292f;
+}
+
+.markdown-body h1 {
+  font-size: 2rem;
+  margin: 1.5em 0 0.5em;
+}
+
+.markdown-body p {
+  margin-bottom: 1em;
+}
+
+.markdown-body code {
+  background-color: #f6f8fa;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* ===============================
+   반응형 스타일 (모바일)
+   =============================== */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px 10px;
+  }
 }
