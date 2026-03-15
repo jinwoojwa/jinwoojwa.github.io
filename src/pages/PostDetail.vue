@@ -16,7 +16,14 @@ const post = posts.find((p) => p.slug === route.params.slug);
 
       <div class="post-info">
         <div class="post-tags" v-if="post.tags">
-          <span v-for="tag in post.tags" :key="tag">#{{ tag }}</span>
+          <router-link
+            v-for="tag in post.tags"
+            :key="tag"
+            :to="{ path: '/', query: { tag: tag } }"
+            class="tag-link"
+          >
+            #{{ tag }}
+          </router-link>
         </div>
         <span class="date">{{ post.date }}</span>
       </div>
@@ -56,5 +63,18 @@ const post = posts.find((p) => p.slug === route.params.slug);
   height: 1px;
   background-color: #30363d;
   margin: 40px auto;
+}
+
+.tag-link {
+  color: #58a6ff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.tag-link:hover {
+  color: #79c0ff;
+  text-decoration: underline;
 }
 </style>

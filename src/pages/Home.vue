@@ -1,24 +1,40 @@
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import { posts } from '../utils/posts';
+import TagFilter from '../components/TagFilter.vue'; // 태그 목록
+
+const route = useRoute();
+
+// URL 쿼리에 따라 글 목록 필터링
+const filteredPosts = computed(() => {
+  const tag = route.query.tag;
+  if (!tag || tag === 'All') return posts;
+  return posts.filter((p) => p.tags?.includes(tag));
+});
 </script>
 
 <template>
   <div>
-    <div v-for="post in posts" :key="post.slug" class="post-card">
-      <router-link :to="`/post/${post.slug}`">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.summary }}</p>
+    <TagFilter />
 
-        <div class="post-meta">
-          <div class="tags" v-if="post.tags && post.tags.length">
-            <span v-for="tag in post.tags" :key="tag" class="tag-item">
-              #{{ tag }}
-            </span>
+    <TransitionGroup name="list" tag="div" class="post-list">
+      <div v-for="post in filteredPosts" :key="post.slug" class="post-card">
+        <router-link :to="`/post/${post.slug}`">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.summary }}</p>
+
+          <div class="post-meta">
+            <div class="tags" v-if="post.tags && post.tags.length">
+              <span v-for="tag in post.tags" :key="tag" class="tag-item">
+                #{{ tag }}
+              </span>
+            </div>
+            <span class="date">{{ post.date }}</span>
           </div>
-          <span class="date">{{ post.date }}</span>
-        </div>
-      </router-link>
-    </div>
+        </router-link>
+      </div>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -71,7 +87,7 @@ import { posts } from '../utils/posts';
   line-height: 1;
 }
 
-/* 태그 스타일 */
+/* 포스트 카드 안쪽 태그 스타일 */
 .tags {
   margin-top: 15px;
   display: flex;
@@ -92,5 +108,20 @@ import { posts } from '../utils/posts';
 
 .post-card:hover .tag-item {
   border-color: #58a6ff; /* 카드 호버 시 태그 테두리 강조 */
+}
+
+/* 리스트 애니메이션 스타일 */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.4s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+/* 이동 중인 요소들 애니메이션 */
+.list-move {
+  transition: transform 0.4s ease;
 }
 </style>
