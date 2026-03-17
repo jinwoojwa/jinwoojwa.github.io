@@ -1,44 +1,91 @@
 @import 'modern-css-reset';
 
-/* Google Fonts : Nanum Gothic Coding */
+/* 폰트 및 외부 라이브러리 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
 
-/* 전역 폰트 설정 */
+/* 전역 레이아웃 및 텍스트 설정 */
 body {
   font-family: 'Nanum Gothic Coding', monospace;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* 기본 글자색, 배경 */
   color: #c9d1d9;
   background-color: #0d1117;
 }
 
-/* Container */
+/* 중앙 정렬 컨테이너 */
 .container {
   max-width: 760px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* Markdown Body (PostDetail) */
+/* 마크다운 본문 공통 스타일 */
 .markdown-body {
   line-height: 1.7;
   font-size: 1rem;
   color: #c9d1d9;
 }
 
+/* 제목(h1) 스타일 */
 .markdown-body h1 {
   font-size: 2rem;
   margin: 1.5em 0 0.5em;
 }
 
+/* 본문 문단(p) 스타일 */
 .markdown-body p {
   margin-bottom: 1em;
 }
 
-/* 인라인 코드 스타일 (문장 중간에 들어가는 `코드`) */
+/* 테이블(table, th, td) 및 행 줄무늬 스타일 */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95rem;
+}
+.markdown-body table th,
+.markdown-body table td {
+  padding: 10px 15px;
+  border: 1px solid #30363d;
+}
+.markdown-body table th {
+  background-color: #161b22;
+  font-weight: bold;
+}
+.markdown-body table tr:nth-child(even) {
+  background-color: #0d1117;
+}
+
+/* 구분선(hr) 스타일 */
+.markdown-body hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #30363d;
+  border: 0;
+}
+
+/* 리스트(ul, ol, li) 스타일 */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+.markdown-body li + li {
+  margin-top: 0.25em;
+}
+
+/* 이미지(img) 스타일 */
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1.5em auto;
+  display: block;
+  border: 1px solid #30363d;
+}
+
+/* 인라인 코드(code) 스타일 */
 .markdown-body :not(pre) > code {
   background-color: #2d333b;
   color: #58a6ff;
@@ -47,7 +94,7 @@ body {
   font-size: 85%;
 }
 
-/* 코드 블록 스타일 (백틱 3개로 감싼 여러 줄 코드) */
+/* 코드 블록(pre) 및 박스 디자인 */
 .markdown-body pre {
   background-color: #1e1e1e;
   border: 1px solid #444c56;
@@ -59,17 +106,38 @@ body {
   margin-bottom: 1.5em;
 }
 
-/* 코드 블록 내부 글자 크기 살짝 조정 */
+/* 코드 블록 내부 텍스트 스타일 */
 .markdown-body pre code {
   font-size: 90%;
   color: #e6edf3;
   background-color: transparent;
 }
 
-/* ===============================
-   반응형 스타일 (모바일)
-   =============================== */
+/* 인용문(blockquote) 영역 스타일 */
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: #8b949e;
+  border-left: 0.25em solid #58a6ff;
+  background-color: #161b22;
+  margin: 1.5em 0;
+  border-radius: 0 6px 6px 0;
+}
 
+/* 인용문 내부 첫 번째/마지막 요소 여백 조절 */
+.markdown-body blockquote > :first-child {
+  margin-top: 12px;
+}
+.markdown-body blockquote > :last-child {
+  margin-bottom: 12px;
+}
+
+/* 중첩된 인용문 스타일 */
+.markdown-body blockquote blockquote {
+  border-left-color: #30363d;
+  background-color: transparent;
+}
+
+/* 모바일 기기 대응 반응형 스타일 */
 @media (max-width: 600px) {
   .container {
     padding: 20px 10px;
