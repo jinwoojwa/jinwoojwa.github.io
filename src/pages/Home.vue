@@ -6,11 +6,17 @@ import TagFilter from '../components/TagFilter.vue'; // 태그 목록
 
 const route = useRoute();
 
+const sortedPosts = computed(() => {
+  return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+});
+
 // URL 쿼리에 따라 글 목록 필터링
 const filteredPosts = computed(() => {
   const tag = route.query.tag;
-  if (!tag || tag === 'All') return posts;
-  return posts.filter((p) => p.tags?.includes(tag));
+  const list = sortedPosts.value;
+
+  if (!tag || tag === 'All') return list;
+  return list.filter((p) => p.tags?.includes(tag));
 });
 </script>
 
