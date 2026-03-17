@@ -1,17 +1,35 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import sitemap from 'vite-plugin-sitemap';
-import { posts } from './src/utils/posts';
+import fs from 'fs';
+import path from 'path';
 
-// https://vite.dev/config/
+const postsDirectory = path.resolve(__dirname, 'src/posts');
+
+const getPostSlugs = () => {
+  try {
+    // 폴더 내의 파일 목록을 읽어옵니다.
+    const files = fs.readdirSync(postsDirectory);
+
+    // 파일명에서 확장자를 제외하고 '/post/slug' 형태로 만듭니다.
+    // 예: 'vue-blog-1.md' -> '/post/vue-blog-1'
+    return files
+      .filter((file) => file.endsWith('.md'))
+      .map((file) => `/post/${file.replace(/\.md$/, '')}`);
+  } catch (e) {
+    console.warn('⚠️ 포스트 폴더를 찾을 수 없어 빈 사이트맵을 생성합니다.');
+    return [];
+  }
+};
+
+const dynamicRoutes = getPostSlugs();
+
 export default defineConfig({
   plugins: [
     vue(),
     sitemap({
       hostname: 'https://jinwoojwa.github.io',
-      // 동적으로 생성되는 포스트 주소들이 있다면 여기에 추가하거나
-      // 빌드 시 스크립트를 통해 주입할 수 있습니다.
-      dynamicRoutes: posts.map((p) => `/post/${p.slug}`),
+      dynamicRoutes: dynamicRoutes,
     }),
   ],
 });
