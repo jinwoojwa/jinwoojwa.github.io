@@ -67,7 +67,7 @@ const filteredPosts = computed(() => {
   line-height: 1.4;
 
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -80,7 +80,7 @@ const filteredPosts = computed(() => {
   line-height: 1.5;
 
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
