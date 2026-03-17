@@ -2,6 +2,7 @@
 import { useRoute } from 'vue-router';
 import { posts } from '../utils/posts';
 import NotFound from '../pages/NotFound.vue';
+import Giscus from '../components/Giscus.vue';
 
 const route = useRoute();
 
@@ -32,6 +33,8 @@ const post = posts.find((p) => p.slug === route.params.slug);
 
       <div v-html="post.content"></div>
     </article>
+
+    <Giscus />
   </div>
 
   <NotFound v-else />
