@@ -48,6 +48,11 @@ const filteredPosts = computed(() => {
   padding: 20px;
   margin-bottom: 20px;
   transition: box-shadow 0.2s ease;
+
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .post-card:hover {
@@ -57,11 +62,29 @@ const filteredPosts = computed(() => {
 
 .post-card h2 {
   margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  line-height: 1.4;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.4em;
 }
 
 .post-card p {
   margin-bottom: 0;
   color: #8b949e;
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.5em;
 }
 
 .post-card a {
