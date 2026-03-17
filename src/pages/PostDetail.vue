@@ -1,4 +1,5 @@
 <script setup>
+import { computed, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { posts } from '../utils/posts';
 import NotFound from '../pages/NotFound.vue';
@@ -7,7 +8,16 @@ import Giscus from '../components/Giscus.vue';
 const route = useRoute();
 
 // 파라미터(slug)와 일치하는 포스트를 찾음. 없으면 undefined
-const post = posts.find((p) => p.slug === route.params.slug);
+const post = computed(() => {
+  return posts.find((p) => p.slug === route.params.slug);
+});
+
+// 글 데이터가 로드되면 제목 업데이트
+watchEffect(() => {
+  if (post.value) {
+    document.title = `${post.value.title}`;
+  }
+});
 </script>
 
 <template>
