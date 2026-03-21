@@ -1,23 +1,46 @@
 <script setup>
-import { computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { posts } from '../utils/posts';
 import TagFilter from '../components/TagFilter.vue'; // 태그 목록
 
 const route = useRoute();
 
+// 한 번에 보여줄 카드 개수 (10개)
+const PAGE_SIZE = 10;
+const displayCount = ref(PAGE_SIZE);
+
+// 최신순 정렬
 const sortedPosts = computed(() => {
   return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
 });
 
-// URL 쿼리에 따라 글 목록 필터링
-const filteredPosts = computed(() => {
+// URL 쿼리에 따라 필터링된 전체 글 목록
+const allFilteredPosts = computed(() => {
   const tag = route.query.tag;
   const list = sortedPosts.value;
 
   if (!tag || tag === 'All') return list;
   return list.filter((p) => p.tags?.includes(tag));
 });
+
+// 실제 화면에 노출할 목록 (10개)
+const displayedPosts = computed(() => {
+  return allFilteredPosts.value.slice(0, displayCount.value);
+});
+
+// 더보기 클릭 함수
+const loadMore = () => {
+  displayCount.value += PAGE_SIZE;
+};
+
+// 태그가 바뀌면 다시 10개부터 보여주도록 리셋
+watch(
+  () => route.query.tag,
+  () => {
+    displayCount.value = PAGE_SIZE;
+  },
+);
 </script>
 
 <template>
@@ -25,7 +48,7 @@ const filteredPosts = computed(() => {
     <TagFilter />
 
     <TransitionGroup name="list" tag="div" class="post-list">
-      <div v-for="post in filteredPosts" :key="post.slug" class="post-card">
+      <div v-for="post in displayedPosts" :key="post.slug" class="post-card">
         <router-link :to="`/post/${post.slug}`">
           <h2>{{ post.title }}</h2>
           <p>{{ post.summary }}</p>
@@ -41,6 +64,15 @@ const filteredPosts = computed(() => {
         </router-link>
       </div>
     </TransitionGroup>
+
+    <div
+      v-if="displayCount < allFilteredPosts.length"
+      class="load-more-container"
+    >
+      <button @click="loadMore" class="load-more-btn">
+        더보기 ({{ allFilteredPosts.length - displayCount }}개 남음)
+      </button>
+    </div>
   </div>
 </template>
 
@@ -153,5 +185,35 @@ const filteredPosts = computed(() => {
 /* 이동 중인 요소들 애니메이션 */
 .list-move {
   transition: transform 0.4s ease;
+}
+
+/* 더보기 버튼 스타일 */
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 60px;
+}
+
+.load-more-btn {
+  background-color: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 12px 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #30363d;
+  border-color: #8b949e;
+  transform: translateY(-2px);
+}
+
+.load-more-btn:active {
+  transform: translateY(0);
 }
 </style>
