@@ -2,6 +2,7 @@
 import { computed, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { posts } from '../utils/posts';
+import { optimizeCloudinaryImages } from '../utils/cloudinary';
 import NotFound from '../pages/NotFound.vue';
 import Giscus from '../components/Giscus.vue';
 
@@ -10,6 +11,13 @@ const route = useRoute();
 // 파라미터(slug)와 일치하는 포스트를 찾음. 없으면 undefined
 const post = computed(() => {
   return posts.find((p) => p.slug === route.params.slug);
+});
+
+// Cloudinary 이미지가 포함된 마크다운 내용을 최적화
+const optimizedContent = computed(() => {
+  if (!post.value || !post.value.content) return '';
+  // 원본 HTML(또는 마크다운) 내의 Cloudinary 주소를 변환해서 반환
+  return optimizeCloudinaryImages(post.value.content);
 });
 
 // 글 데이터가 로드되면 제목 업데이트
@@ -41,7 +49,7 @@ watchEffect(() => {
 
       <hr class="post-divider" />
 
-      <div v-html="post.content"></div>
+      <div v-html="optimizedContent"></div>
     </article>
 
     <Giscus />
