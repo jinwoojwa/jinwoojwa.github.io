@@ -6,6 +6,7 @@ import router from './router';
 import 'highlight.js/styles/github-dark.css';
 
 // CSS
+import 'modern-css-reset';
 import './assets/css/main.css';
 
 createApp(App).use(router).mount('#app');
