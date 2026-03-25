@@ -3,7 +3,6 @@
     <h1>My Blog</h1>
     <nav>
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
       <a
         href="https://github.com/jinwoojwa"
         target="_blank"
@@ -58,7 +57,6 @@ nav a.router-link-active {
   color: #c9d1d9;
 }
 
-/* 활성화된 상태에서도 호버 시에는 파란색이 되도록 설정 */
 nav a.router-link-active:hover {
   color: #58a6ff;
 }
