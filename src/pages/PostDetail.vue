@@ -23,7 +23,7 @@ const optimizedContent = computed(() => {
 // 글 데이터가 로드되면 제목 업데이트
 watchEffect(() => {
   if (post.value) {
-    document.title = `${post.value.title}`;
+    document.title = `${post.value.title} | My DevLog`;
   }
 });
 </script>
