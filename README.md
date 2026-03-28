@@ -23,7 +23,7 @@ src/
 ├── utils/          # 유틸리티 함수 (Post Data 처리, 정렬 등)
 ├── posts/          # 마크다운(.md) 포스트 저장소
 └── assets/         # CSS 스타일 리소스
-public/             # robots.txt, image, favicon
+public/             # robots.txt, favicon
 ```
 
 <br>
