@@ -25,12 +25,15 @@ const getPostSlugs = () => {
 const dynamicRoutes = getPostSlugs();
 
 export default defineConfig({
+  base: '/',
   plugins: [
     vue(),
     sitemap({
       hostname: 'https://jinwoojwa.github.io',
       dynamicRoutes: dynamicRoutes,
-      generateRobotsTxt: true,
+      generateRobotsTxt: false,
+      ooutDir: path.resolve(__dirname, 'dist'),
+      readable: true,
     }),
   ],
   resolve: {
