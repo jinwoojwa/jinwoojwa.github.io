@@ -15,7 +15,7 @@ const getPostSlugs = () => {
     // 예: 'vue-blog-1.md' -> '/post/vue-blog-1'
     return files
       .filter((file) => file.endsWith('.md'))
-      .map((file) => `/#/post/${file.replace(/\.md$/, '')}`);
+      .map((file) => `/post/${file.replace(/\.md$/, '')}`);
   } catch (e) {
     console.warn('⚠️ 포스트 폴더를 찾을 수 없어 빈 사이트맵을 생성합니다.');
     return [];
@@ -30,6 +30,12 @@ export default defineConfig({
     sitemap({
       hostname: 'https://jinwoojwa.github.io',
       dynamicRoutes: dynamicRoutes,
+      generateRobotsTxt: true,
     }),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 });
