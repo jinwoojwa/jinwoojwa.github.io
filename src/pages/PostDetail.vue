@@ -3,6 +3,7 @@ import { computed, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { posts } from '../utils/posts';
 import { optimizeCloudinaryImages } from '../utils/cloudinary';
+import { renderMarkdown } from '../utils/markdown';
 import NotFound from '../pages/NotFound.vue';
 import Giscus from '../components/Giscus.vue';
 
@@ -16,8 +17,11 @@ const post = computed(() => {
 // Cloudinary 이미지가 포함된 마크다운 내용을 최적화
 const optimizedContent = computed(() => {
   if (!post.value || !post.value.content) return '';
+
+  const htmlContent = renderMarkdown(post.value.content);
+
   // 원본 HTML(또는 마크다운) 내의 Cloudinary 주소를 변환해서 반환
-  return optimizeCloudinaryImages(post.value.content);
+  return optimizeCloudinaryImages(htmlContent);
 });
 
 // 글 데이터가 로드되면 제목 업데이트
