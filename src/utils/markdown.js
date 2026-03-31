@@ -7,7 +7,7 @@ const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  // ✅ 코드 하이라이트 설정 추가
+  breaks: false,
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -24,7 +24,11 @@ const md = new MarkdownIt({
   },
 });
 
-md.use(katex);
+md.use(katex, {
+  strict: false,
+  throwOnError: false,
+  output: 'html',
+});
 
 export const renderMarkdown = (content) => {
   return md.render(content);
