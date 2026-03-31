@@ -22,9 +22,8 @@ const post = computed(() => {
 // 마크다운 변환 + 이미지 최적화
 const optimizedContent = computed(() => {
   if (!post.value || !post.value.content) return '';
-  const htmlContent = renderMarkdown(post.value.content);
-  // 원본 HTML(또는 마크다운) 내의 Cloudinary 주소를 변환해서 반환
-  return optimizeCloudinaryImages(htmlContent);
+  const preOptimized = optimizeCloudinaryImages(post.value.content);
+  return renderMarkdown(preOptimized);
 });
 
 // 콘텐츠 변경 시마다 목차 재생성
