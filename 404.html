@@ -1,40 +1,23 @@
 <!doctype html>
-<html lang="ko">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta charset="utf-8" />
     <title>My DevLog</title>
-
-    <meta
-      name="description"
-      content="백엔드 개발 및 소프트웨어 기술에 대한 공부 기록을 담고 있습니다."
-    />
-    <meta name="author" content="Jinwoo" />
-
-    <meta property="og:title" content="My DevLog" />
-    <meta
-      property="og:description"
-      content="소프트웨어 기술에 대한 공부 기록 블로그"
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jinwoojwa.github.io" />
-
-    <meta
-      name="google-site-verification"
-      content="-arbJxKwCvilKa2xl5GIZxkywz2x1JEOcjAF8IweW_A"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <script type="text/javascript">
+      // 현재 404가 발생한 경로를 추출.
+      var l = window.location;
+      // 원래 가려던 주소를 쿼리 스트링(?p=...)에 담아 메인으로 보냄.
+      l.replace(
+        l.protocol +
+          '//' +
+          l.hostname +
+          (l.port ? ':' + l.port : '') +
+          '/?p=/' +
+          l.pathname.split('/').slice(1).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash,
+      );
+    </script>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <body></body>
 </html>
