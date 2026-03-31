@@ -7,6 +7,20 @@
 
     <title>My DevLog</title>
 
+    <script type="text/javascript">
+      (function () {
+        var redirect = window.location.search.match(/[?&]p=([^&]+)/);
+        if (redirect) {
+          var path = decodeURIComponent(redirect[1]).replace(/~and~/g, '&');
+          window.history.replaceState(
+            null,
+            null,
+            window.location.pathname.slice(0, -1) + path + window.location.hash,
+          );
+        }
+      })();
+    </script>
+
     <meta
       name="description"
       content="백엔드 개발 및 소프트웨어 기술에 대한 공부 기록을 담고 있습니다."
