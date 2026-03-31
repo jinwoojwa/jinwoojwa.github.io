@@ -63,6 +63,20 @@ body {
   margin-bottom: 1em;
 }
 
+/* 본문 링크 스타일 */
+.markdown-body a {
+  color: #58a6ff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.markdown-body a:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+.markdown-body a:visited {
+  color: #58a6ff;
+}
+
 /* 테이블(table, th, td) 및 행 줄무늬 스타일 */
 .markdown-body table {
   width: 100%;
