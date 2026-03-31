@@ -1794,7 +1794,7 @@ tags: Algorithm, Java
 
 수들의 배열 $A$가 있을 때, 합 배열 $S$는 다음과 같이 정의한다.
 
-$$S[i] = A[0] + A[1] + \\dots + A[i]$$
+$S[i] = A[0] + A[1] + \\dots + A[i]$
 
 <br>
 
