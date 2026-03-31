@@ -7,6 +7,48 @@
 
     <title>My DevLog</title>
 
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === 'p') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .filter(function (s) {
+              return s.slice(0, 2) === 'p=/';
+            })[0];
+          if (decoded !== undefined) {
+            // 브라우저 주소창에서 ?p=/post/... 부분을 실제 경로인 /post/...로 교체
+            window.history.replaceState(
+              null,
+              null,
+              l.pathname.slice(0, -1) +
+                decoded.slice(2) +
+                (l.search
+                  .split('&')
+                  .filter(function (s) {
+                    return s.slice(0, 2) !== 'p=/';
+                  })
+                  .join('&')
+                  .slice(1).length
+                  ? '?' +
+                    l.search
+                      .split('&')
+                      .filter(function (s) {
+                        return s.slice(0, 2) !== 'p=/';
+                      })
+                      .join('&')
+                      .slice(1)
+                  : '') +
+                l.hash,
+            );
+          }
+        }
+      })(window.location);
+    </script>
+
     <meta
       name="description"
       content="백엔드 개발 및 소프트웨어 기술에 대한 공부 기록을 담고 있습니다."
@@ -37,46 +79,6 @@
       href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <script type="text/javascript">
-      (function (l) {
-        if (l.search[1] === 'p') {
-          var decoded = l.search
-            .slice(1)
-            .split('&')
-            .map(function (s) {
-              return s.replace(/~and~/g, '&');
-            })
-            .filter(function (s) {
-              return s.slice(0, 2) === 'p=/';
-            })[0];
-          if (decoded !== undefined) {
-            window.history.replaceState(
-              null,
-              null,
-              l.pathname.slice(0, -1) +
-                decoded.slice(2) +
-                (l.search
-                  .split('&')
-                  .filter(function (s) {
-                    return s.slice(0, 2) !== 'p=/';
-                  })
-                  .join('&')
-                  .slice(1).length
-                  ? '?' +
-                    l.search
-                      .split('&')
-                      .filter(function (s) {
-                        return s.slice(0, 2) !== 'p=/';
-                      })
-                      .join('&')
-                      .slice(1)
-                  : '') +
-                l.hash,
-            );
-          }
-        }
-      })(window.location);
-    </script>
     <script type="module" crossorigin src="/assets/index-yMu4GIEn.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-D_X1fHx0.css">
   </head>
