@@ -9,9 +9,14 @@ body {
 
 /* 중앙 정렬 컨테이너 */
 .container {
+  width: 100%;
   max-width: 760px;
   margin: 0 auto;
   padding: 40px 20px;
+}
+
+.container:has(.post-layout) {
+  max-width: 1150px;
 }
 
 /* 마크다운 본문 공통 스타일 */
