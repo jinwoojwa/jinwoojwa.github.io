@@ -8,45 +8,17 @@
     <title>My DevLog</title>
 
     <script type="text/javascript">
-      (function (l) {
-        if (l.search[1] === 'p') {
-          var decoded = l.search
-            .slice(1)
-            .split('&')
-            .map(function (s) {
-              return s.replace(/~and~/g, '&');
-            })
-            .filter(function (s) {
-              return s.slice(0, 2) === 'p=/';
-            })[0];
-          if (decoded !== undefined) {
-            // 브라우저 주소창에서 ?p=/post/... 부분을 실제 경로인 /post/...로 교체
-            window.history.replaceState(
-              null,
-              null,
-              l.pathname.slice(0, -1) +
-                decoded.slice(2) +
-                (l.search
-                  .split('&')
-                  .filter(function (s) {
-                    return s.slice(0, 2) !== 'p=/';
-                  })
-                  .join('&')
-                  .slice(1).length
-                  ? '?' +
-                    l.search
-                      .split('&')
-                      .filter(function (s) {
-                        return s.slice(0, 2) !== 'p=/';
-                      })
-                      .join('&')
-                      .slice(1)
-                  : '') +
-                l.hash,
-            );
-          }
+      (function () {
+        var redirect = window.location.search.match(/[?&]p=([^&]+)/);
+        if (redirect) {
+          var path = decodeURIComponent(redirect[1]).replace(/~and~/g, '&');
+          window.history.replaceState(
+            null,
+            null,
+            window.location.pathname.slice(0, -1) + path + window.location.hash,
+          );
         }
-      })(window.location);
+      })();
     </script>
 
     <meta

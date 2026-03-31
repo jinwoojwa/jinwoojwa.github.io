@@ -4,17 +4,20 @@
     <meta charset="utf-8" />
     <title>My DevLog</title>
     <script type="text/javascript">
-      // 현재 404가 발생한 경로를 추출.
       var l = window.location;
-      // 원래 가려던 주소를 쿼리 스트링(?p=...)에 담아 메인으로 보냄.
+      // 경로를 안전하게 인코딩하여 메인(index.html)으로 전달
+      var path = l.pathname.split('/').slice(1).join('/');
+      var query = l.search
+        ? '&q=' + l.search.slice(1).replace(/&/g, '~and~')
+        : '';
       l.replace(
         l.protocol +
           '//' +
           l.hostname +
           (l.port ? ':' + l.port : '') +
           '/?p=/' +
-          l.pathname.split('/').slice(1).join('/').replace(/&/g, '~and~') +
-          (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          encodeURIComponent(path) +
+          query +
           l.hash,
       );
     </script>
