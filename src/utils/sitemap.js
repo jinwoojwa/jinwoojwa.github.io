@@ -4,8 +4,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const postsDirectory = path.resolve(__dirname, '../src/posts');
-const distDirectory = path.resolve(__dirname, '../dist');
+const postsDirectory = path.resolve(process.cwd(), 'src/posts');
+const distDirectory = path.resolve(process.cwd(), 'dist');
+
+console.log('🔍 Looking for posts in:', postsDirectory);
 
 // 1. 포스트 슬러그 수집
 const getPostSlugs = () => {
