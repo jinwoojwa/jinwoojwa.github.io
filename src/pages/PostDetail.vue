@@ -5,6 +5,7 @@ import { posts } from '../utils/posts';
 import { optimizeCloudinaryImages } from '../utils/cloudinary';
 import { renderMarkdown } from '../utils/markdown';
 import { useToc } from '../composables/useToc';
+import { useCodeBlock } from '../composables/useCodeBlock';
 import NotFound from '../pages/NotFound.vue';
 import Giscus from '../components/Giscus.vue';
 
@@ -13,6 +14,7 @@ const route = useRoute();
 const contentBody = ref(null);
 
 const { toc, generateToc, scrollToId } = useToc(contentBody);
+const { enhanceCodeBlocks } = useCodeBlock();
 
 // 현재 포스트 데이터 계산
 const post = computed(() => {
@@ -31,6 +33,7 @@ watch(
   optimizedContent,
   () => {
     generateToc();
+    enhanceCodeBlocks();
   },
   { immediate: true },
 );

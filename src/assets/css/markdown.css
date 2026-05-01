@@ -128,12 +128,25 @@
   font-size: 85%;
 }
 
+/* 코드 블록 래퍼 (가로 스크롤 시 버튼/배지 고정용) */
+.markdown-body .code-wrapper {
+  position: relative;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.markdown-body .code-wrapper pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /* 코드 블록(pre) 및 박스 디자인 */
 .markdown-body pre {
+  position: relative;
   background-color: #1e1e1e;
   border: 1px solid #444c56;
   border-radius: 8px;
-  padding: 16px;
+  padding: 36px 16px 16px 16px; /* 배지와 버튼이 들어갈 상단 여백 추가 */
   overflow-x: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   margin-top: 1.5em;
@@ -145,6 +158,55 @@
   font-size: 90%;
   color: #e6edf3;
   background-color: transparent;
+}
+
+/* 언어 배지 (Language Badge) */
+.markdown-body .lang-badge {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #8b949e;
+  background-color: #30363d;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  text-transform: uppercase;
+  user-select: none; /* 텍스트 드래그 방지 */
+}
+
+/* 복사 버튼 (Copy Button) */
+.markdown-body .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d333b;
+  color: #c9d1d9;
+  border: 1px solid #444c56;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    background-color 0.2s;
+}
+
+.markdown-body .code-wrapper:hover .copy-btn {
+  opacity: 1;
+}
+
+.markdown-body .copy-btn:hover {
+  background-color: #444c56;
+}
+
+.markdown-body .copy-btn.copied {
+  color: #3fb950;
 }
 
 /* 인용문(blockquote) 영역 스타일 */
