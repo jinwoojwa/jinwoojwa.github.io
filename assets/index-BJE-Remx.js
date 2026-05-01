@@ -2622,7 +2622,7 @@ export function useSharedCounter() {
 - **핵심:** 애플리케이션의 규모가 커질수록 컴포저블을 활용해 로직을 잘게 쪼개고, 전역적인 데이터는 \`Provide/Inject\`나 \`Pinia\`를 통해 효율적으로 관리해야 한다.
 `,Ql=`---
 title: Java Stream API Docs (1) - Stream 생성
-summary: Java의 Stream을 생성하는 모든 방법을 정리합니다.
+summary: Java의 Stream을 생성하는 모든 방법을 정리
 date: 2026-05-01
 slug: java-stream-creation
 tags: Java
