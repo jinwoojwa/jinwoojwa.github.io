@@ -47,14 +47,33 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link 
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Nanum+Gothic+Coding:wght@400;700&display=swap" 
-    rel="stylesheet" 
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Nanum+Gothic+Coding:wght@400;700&display=swap"
+      rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-BAfxHmqO.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BYDq-phu.css">
+
+    <style>
+      /* CSS 로드 전 깜빡임(FOUC) 방지용 초기 배경색 */
+      body {
+        background-color: #0d1117;
+        margin: 0;
+      }
+      body.light-mode {
+        background-color: #ffffff;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-BXkSB_DT.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B2m5i8Sv.css">
   </head>
   <body>
+    <script type="text/javascript">
+      (function () {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') {
+          document.body.classList.add('light-mode');
+        }
+      })();
+    </script>
     <div id="app"></div>
   </body>
 </html>
