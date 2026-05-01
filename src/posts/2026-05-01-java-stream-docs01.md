@@ -1,6 +1,6 @@
 ---
 title: Java Stream API Docs (1) - Stream 생성
-summary: Java의 Stream을 생성하는 모든 방법을 정리합니다.
+summary: Java의 Stream을 생성하는 모든 방법을 정리
 date: 2026-05-01
 slug: java-stream-creation
 tags: Java
