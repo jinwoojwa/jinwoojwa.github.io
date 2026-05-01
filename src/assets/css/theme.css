@@ -1,0 +1,163 @@
+/* 라이트 모드 (light-mode) 스타일 오버라이드 */
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+body.light-mode {
+  background-color: #ffffff;
+  color: #24292f;
+}
+
+body.light-mode .markdown-body {
+  color: #24292f;
+}
+
+body.light-mode .markdown-body h1,
+body.light-mode .markdown-body h2,
+body.light-mode .markdown-body h3 {
+  color: #24292f;
+}
+
+body.light-mode .markdown-body a {
+  color: #0969da;
+}
+
+body.light-mode .markdown-body a:hover {
+  color: #539bf5;
+}
+
+body.light-mode .markdown-body a:visited {
+  color: #0969da;
+}
+
+body.light-mode .markdown-body table th,
+body.light-mode .markdown-body table td {
+  border-color: #d0d7de;
+}
+
+body.light-mode .markdown-body table th {
+  background-color: #f6f8fa;
+}
+
+body.light-mode .markdown-body table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+body.light-mode .markdown-body hr {
+  background-color: #d0d7de;
+}
+
+body.light-mode .markdown-body img {
+  border-color: #d0d7de;
+}
+
+body.light-mode .markdown-body :not(pre) > code {
+  background-color: rgba(175, 184, 193, 0.2);
+  color: #24292f;
+}
+
+body.light-mode .markdown-body pre {
+  background-color: #f6f8fa;
+  border-color: #d0d7de;
+}
+
+body.light-mode .markdown-body pre code {
+  color: #24292f;
+}
+
+body.light-mode .markdown-body blockquote {
+  color: #57606a;
+  background-color: #f6f8fa;
+  border-left-color: #0969da;
+}
+
+body.light-mode .markdown-body blockquote blockquote {
+  border-left-color: #d0d7de;
+}
+
+/* 라이트 모드 highlight.js 구문 강조 */
+body.light-mode .markdown-body .hljs-keyword,
+body.light-mode .markdown-body .hljs-built_in,
+body.light-mode .markdown-body .hljs-type,
+body.light-mode .markdown-body .hljs-literal {
+  color: #cf222e;
+}
+
+body.light-mode .markdown-body .hljs-number {
+  color: #0550ae;
+}
+
+body.light-mode .markdown-body .hljs-string {
+  color: #0a3069;
+}
+
+body.light-mode .markdown-body .hljs-comment {
+  color: #6e7781;
+  font-style: italic;
+}
+
+body.light-mode .markdown-body .hljs-title,
+body.light-mode .markdown-body .hljs-title.class_,
+body.light-mode .markdown-body .hljs-title.function_ {
+  color: #8250df;
+  font-weight: bold;
+}
+
+body.light-mode .markdown-body .hljs-attr,
+body.light-mode .markdown-body .hljs-attribute {
+  color: #0550ae;
+}
+
+body.light-mode .markdown-body .hljs-variable,
+body.light-mode .markdown-body .hljs-template-variable {
+  color: #953800;
+}
+
+body.light-mode .markdown-body .hljs-tag,
+body.light-mode .markdown-body .hljs-name {
+  color: #116329;
+}
+
+/* 라이트 모드 포스트 카드 & 필터 & 더보기 등 (기타 컴포넌트 전역 오버라이드) */
+body.light-mode .filter-btn,
+body.light-mode .tag-item {
+  background-color: #ddf4ff;
+  color: #0969da;
+  border: 1px solid rgba(9, 105, 218, 0.2);
+}
+body.light-mode .filter-btn:hover,
+body.light-mode .tag-item:hover {
+  background-color: #b6e3ff;
+  border-color: rgba(9, 105, 218, 0.5);
+}
+body.light-mode .filter-btn.active {
+  background-color: #0969da;
+  color: #ffffff;
+  border-color: #0969da;
+}
+body.light-mode .post-card:hover .tag-item {
+  border-color: rgba(9, 105, 218, 0.5);
+}
+body.light-mode .post-card {
+  background-color: #ffffff;
+  border-color: #d0d7de;
+}
+body.light-mode .post-card:hover {
+  border-color: #0969da;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .post-card p,
+body.light-mode .date {
+  color: #57606a;
+}
+body.light-mode .load-more-btn {
+  background-color: #f6f8fa;
+  color: #24292f;
+  border-color: #d0d7de;
+}
+body.light-mode .load-more-btn:hover {
+  background-color: #f3f4f6;
+  border-color: #8c959f;
+}

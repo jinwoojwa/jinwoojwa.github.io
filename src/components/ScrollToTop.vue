@@ -69,7 +69,7 @@ onUnmounted(() => {
   color: #58a6ff;
 }
 
-/* 📱 모바일 화면 */
+/* 모바일 화면 */
 @media (max-width: 600px) {
   .scroll-to-top {
     bottom: 20px;
@@ -78,7 +78,6 @@ onUnmounted(() => {
   }
 }
 
-/* 나타나고 사라지는 효과 */
 .fade-enter-active,
 .fade-leave-active {
   transition:
@@ -90,5 +89,15 @@ onUnmounted(() => {
 .fade-leave-to {
   opacity: 0;
   transform: translateY(10px);
+}
+
+/* 라이트 모드 위로 가기(ScrollToTop) */
+body.light-mode .scroll-to-top {
+  color: #24292f;
+  text-decoration-color: #0969da;
+}
+
+body.light-mode .scroll-to-top:hover {
+  color: #0969da;
 }
 </style>
