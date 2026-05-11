@@ -166,7 +166,20 @@ watchEffect(() => {
   position: sticky;
   top: 100px;
   height: fit-content;
+  max-height: calc(
+    100vh - 220px
+  ); /* 상단 여백(100px) + 하단 여백 및 버튼 크기(약 120px) 제외 */
+  overflow-y: auto;
   display: none;
+}
+
+/* TOC 영역 얇은 스크롤바 적용 */
+.toc-wrapper::-webkit-scrollbar {
+  width: 4px;
+}
+.toc-wrapper::-webkit-scrollbar-thumb {
+  background-color: #30363d;
+  border-radius: 4px;
 }
 @media (min-width: 1100px) {
   .toc-wrapper {
