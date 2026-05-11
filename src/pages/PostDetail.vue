@@ -13,7 +13,7 @@ const route = useRoute();
 
 const contentBody = ref(null);
 
-const { toc, generateToc, scrollToId } = useToc(contentBody);
+const { toc, activeId, generateToc, scrollToId } = useToc(contentBody);
 const { enhanceCodeBlocks } = useCodeBlock();
 
 // 현재 포스트 데이터 계산
@@ -83,7 +83,11 @@ watchEffect(() => {
           <li
             v-for="item in toc"
             :key="item.id"
-            :class="['toc-item', `level-${item.level}`]"
+            :class="[
+              'toc-item',
+              `level-${item.level}`,
+              { active: activeId === item.id },
+            ]"
             @click="scrollToId(item.id)"
           >
             {{ item.text }}
@@ -211,7 +215,8 @@ watchEffect(() => {
   transition: all 0.2s ease;
 }
 
-.toc-item:hover {
+.toc-item:hover,
+.toc-item.active {
   color: #58a6ff;
   border-left: 2px solid #58a6ff;
   padding-left: 15px;
