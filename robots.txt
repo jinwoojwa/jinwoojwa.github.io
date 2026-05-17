@@ -1,4 +1,6 @@
+# START nuxt-robots (indexable)
 User-agent: *
-Allow: /
+Disallow: 
 
-Sitemap: https://jinwoojwa.github.io/sitemap.xml
+Sitemap: http://localhost/sitemap.xml
+# END nuxt-robots

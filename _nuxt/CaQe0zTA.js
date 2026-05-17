@@ -1,0 +1,1 @@
+import{d as s,D as a,i as r,I as t}from"./BSX5CVf7.js";const n={};function o(e,c){return a(),r("thead",null,[t(e.$slots,"default")])}const l=Object.assign(s(n,[["render",o]]),{__name:"ProseThead"});export{l as default};
