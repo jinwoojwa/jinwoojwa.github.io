@@ -1,28 +1,27 @@
 {
   "name": "jinwoojwa.github.io",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "postbuild": "node src/utils/sitemap.js",
-    "preview": "vite preview"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "highlight.js": "^11.11.1",
-    "katex": "^0.16.44",
-    "markdown-it": "^14.1.1",
-    "markdown-it-texmath": "^1.0.0",
-    "marked": "^17.0.4",
-    "marked-highlight": "^2.2.3",
-    "modern-css-reset": "^1.4.0",
-    "vue": "^3.5.30",
-    "vue-router": "^5.0.3"
+    "@giscus/vue": "^3.1.1",
+    "@nuxt/content": "^3.13.0",
+    "@nuxtjs/robots": "^6.0.8",
+    "@nuxtjs/sitemap": "^8.0.15",
+    "better-sqlite3": "^12.10.0",
+    "nuxt": "^4.4.5",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "shiki": "^4.0.2",
+    "vue": "^3.5.34"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.5",
-    "vite": "^8.0.0",
-    "vite-plugin-sitemap": "^0.8.2"
+    "@nuxt/fonts": "^0.14.0"
   }
 }

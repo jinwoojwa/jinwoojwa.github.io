@@ -1,14 +1,14 @@
 ### 📒 개인 블로그 프로젝트
 
-- `Vue.js`와 `Vite`를 기반으로 구축한 개인 블로그입니다.
+- `Nuxt 3`와 `Nuxt Content`를 기반으로 구축한 개인 블로그입니다. (Vue.js + Vite 환경에서 마이그레이션)
 - 개인적으로 공부한 내용들을 정리하고 있습니다.
 
 <br>
 
 ### 🛠 기술 스택
 
-- **Framework:** Vue 3 (Composition API)
-- **Build Tool:** Vite
+- **Framework:** Nuxt 3 (Vue 3 / Composition API)
+- **Content Module:** Nuxt Content v3
 - **Deployment:** GitHub Actions & GitHub Pages
 - **Styling:** CSS3
 
@@ -17,13 +17,13 @@
 ### ⚙️ 프로젝트 구조
 
 ```
-src/
-├── components/     # 공통 컴포넌트 (Nav, Footer, TagFilter 등)
-├── pages/          # 페이지 컴포넌트 (Home, PostDetail)
-├── utils/          # 유틸리티 함수 (Post Data 처리, 정렬 등)
-├── posts/          # 마크다운(.md) 포스트 저장소
-└── assets/         # CSS 스타일 리소스
-public/             # robots.txt, favicon
+├── components/     # 공통 및 Content 커스텀 컴포넌트 (ProsePre, ScrollToTop 등)
+├── composables/    # 공통 컴포저블 함수 (useToc 등)
+├── pages/          # 파일 기반 라우팅 페이지 (목록, 포스트 상세)
+├── content/        # 마크다운(.md) 포스트 저장소
+├── assets/         # CSS 등 정적 리소스 (main.css, markdown.css)
+├── public/         # 파비콘 등 퍼블릭 리소스
+└── nuxt.config.ts  # Nuxt 설정 파일
 ```
 
 <br>
@@ -54,4 +54,5 @@ public/             # robots.txt, favicon
 
 2. 🔍 검색 엔진 최적화 (SEO)
 
-- 빌드 시 Node.js 스크립트를 통해 모든 포스트의 경로를 포함한 `sitemap.xml` 자동 생성
+- `@nuxtjs/sitemap` 및 `@nuxtjs/robots` 모듈을 활용하여 빌드 시 사이트맵과 robots.txt 자동 생성
+- `useSeoMeta`를 통한 Open Graph, Twitter 태그 및 표준 링크(Canonical URL) 등 메타 데이터 최적화
