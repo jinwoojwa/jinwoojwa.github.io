@@ -2,5 +2,5 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://localhost/sitemap.xml
+Sitemap: https://jinwoojwa.github.io/sitemap.xml
 # END nuxt-robots
