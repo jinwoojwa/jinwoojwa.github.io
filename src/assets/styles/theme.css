@@ -1,0 +1,21 @@
+:root {
+  /* 색상 변수 정의 */
+  --bg-main: #1a1a1a; /* 우측 본문 배경 */
+  --bg-sidebar: #242424; /* 왼쪽 사이드바 배경 */
+  --bg-hover: #2d2d2d; /* 메뉴 호버 시 배경 */
+  --color-primary: #42b883; /* Vue 포인트 컬러 (연두색) */
+
+  --text-main: #e0e0e0; /* 기본 글자 색 */
+  --text-muted: #888888; /* 흐린 글자 색 (카테고리 등) */
+  --text-white: #ffffff; /* 강조 글자 색 */
+
+  --border-color: #333333; /* 경계선 색 */
+  --code-bg: #2d2d2d; /* 코드 블록 배경 */
+  --code-inline: #ff79c6; /* 인라인 코드 글자 색 */
+}
+
+/* 글로벌 기본 색상 적용 */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
