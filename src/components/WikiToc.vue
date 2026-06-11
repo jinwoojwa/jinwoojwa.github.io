@@ -8,7 +8,9 @@
           :key="item.id"
           :class="`toc-depth-${item.depth}`"
         >
-          <a :href="`#${item.id}`">{{ item.text }}</a>
+          <a :href="`#${item.id}`" @click.prevent="scrollToHeading(item.id)">
+            {{ item.text }}
+          </a>
         </li>
       </ul>
     </div>
@@ -19,13 +21,11 @@
 import { ref, watch, nextTick } from 'vue';
 
 const props = defineProps({
-  // 본문 HTML 문자열을 주입받음
   content: { type: String, default: '' },
 });
 
 const toc = ref([]);
 
-// 본문 내용이 변경될 때마다 목차를 새로 갱신
 watch(
   () => props.content,
   async (newContent) => {
@@ -34,35 +34,46 @@ watch(
       return;
     }
 
-    // HTML이 실제 DOM에 렌더링된 이후에 태그를 추적해야 하므로 nextTick 처리
     await nextTick();
     generateTOC();
   },
   { immediate: true },
 );
 
-// 본문 내 제목 태그(H1, H2)를 파싱하는 함수
 const generateTOC = () => {
   const viewerElement = document.querySelector('.markdown-body');
   if (!viewerElement) return;
 
-  const headings = viewerElement.querySelectorAll('h1, h2');
+  const headings = viewerElement.querySelectorAll('h2, h3');
   const tempToc = [];
 
   headings.forEach((heading, index) => {
-    // 앵커 이동을 위해 ID가 부여되지 않은 태그에 고유 고리(ID) 삽입
     if (!heading.id) {
       heading.id = `heading-${index}`;
     }
 
+    const depth = parseInt(heading.tagName.replace('H', ''), 10);
+
     tempToc.push({
       id: heading.id,
-      text: heading.innerText,
-      depth: heading.tagName === 'H1' ? 1 : 2,
+      text: heading.innerText || heading.textContent,
+      depth: depth,
     });
   });
 
   toc.value = tempToc;
+};
+
+const scrollToHeading = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+
+    window.history.pushState(null, null, `#${id}`);
+  }
 };
 </script>
 
@@ -71,7 +82,6 @@ const generateTOC = () => {
   width: 220px;
   padding: 40px 20px 40px 0;
   overflow-y: auto;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -118,11 +128,16 @@ const generateTOC = () => {
   color: var(--text-white);
 }
 
-.toc-depth-1 {
-  padding-left: 0;
-  font-weight: 500;
-}
 .toc-depth-2 {
+  padding-left: 0;
+}
+.toc-depth-3 {
   padding-left: 12px;
+  font-size: 0.95em;
+}
+.toc-depth-4 {
+  padding-left: 24px;
+  font-size: 0.9em;
+  opacity: 0.8;
 }
 </style>
