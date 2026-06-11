@@ -22,6 +22,9 @@ import WikiToc from './components/WikiToc.vue';
 const currentFile = ref('');
 const content = ref('');
 
+// 🚀 Vite의 현재 Base URL을 가져옵니다. (기본값: '/' 또는 '/레포이름/')
+const baseUrl = import.meta.env.BASE_URL;
+
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);
   const pageParam = urlParams.get('page');
@@ -46,13 +49,13 @@ const loadMarkdown = async (category, filename) => {
   window.history.pushState({ path: newUrl }, '', newUrl);
 
   try {
-    const response = await fetch(`/docs/${filePath}`);
+    const response = await fetch(`${baseUrl}docs/${filePath}`);
     if (response.ok) {
       const text = await response.text();
       const { body } = fm(text);
       content.value = await marked.parse(body);
     } else {
-      content.value = `🛑 파일을 찾을 수 없습니다. (경로: /docs/${filePath})`;
+      content.value = `🛑 파일을 찾을 수 없습니다. (경로: ${baseUrl}docs/${filePath})`;
     }
   } catch (error) {
     content.value = '🛑 파일을 불러오는 중 네트워크 오류가 발생했습니다.';
@@ -66,7 +69,7 @@ const resetToHome = async () => {
   window.history.pushState({ path: cleanUrl }, '', cleanUrl);
 
   try {
-    const response = await fetch('/docs/home.md');
+    const response = await fetch(`${baseUrl}docs/home.md`);
     if (response.ok) {
       const text = await response.text();
       const { body } = fm(text);

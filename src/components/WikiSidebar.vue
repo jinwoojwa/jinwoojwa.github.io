@@ -39,9 +39,11 @@ defineProps({
 const menuList = ref({});
 const openedCategories = ref({});
 
+const baseUrl = import.meta.env.BASE_URL;
+
 onMounted(async () => {
   try {
-    const response = await fetch('/docs/menu.json');
+    const response = await fetch(`${baseUrl}docs/menu.json`);
     if (!response.ok) throw new Error('메뉴 구조가 없습니다.');
     const rawMenu = await response.json();
     const parsedMenu = {};
@@ -50,7 +52,9 @@ onMounted(async () => {
       parsedMenu[category] = [];
       for (const filename of rawMenu[category]) {
         try {
-          const fileResp = await fetch(`/docs/${category}/${filename}`);
+          const fileResp = await fetch(
+            `${baseUrl}docs/${category}/${filename}`,
+          );
           if (fileResp.ok) {
             const text = await fileResp.text();
             const { attributes } = fm(text);
