@@ -5,13 +5,42 @@
   line-height: 1.7;
 }
 
-.markdown-body h1,
-.markdown-body h2 {
+.markdown-body h1 {
+  color: var(--text-white);
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 8px;
+  margin-top: 56px;
+  margin-bottom: 20px;
+}
+
+.markdown-body h2 {
   color: var(--text-white);
-  margin-top: 32px;
-  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-top: 48px;
+  margin-bottom: 18px;
+}
+
+.markdown-body h3 {
+  color: var(--text-white);
+  margin-top: 36px;
+  margin-bottom: 14px;
+}
+
+.markdown-body h4 {
+  color: var(--text-white);
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.markdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  scroll-margin-top: 60px;
 }
 
 .markdown-body p {
@@ -32,7 +61,7 @@
   padding: 16px;
   border-radius: 8px;
   overflow-x: auto;
-  margin: 20px 0;
+  margin: 24px 0;
 }
 
 .markdown-body pre code {
@@ -64,4 +93,74 @@
   list-style-type: circle;
   margin-top: 6px;
   margin-bottom: 0;
+}
+
+.markdown-body table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.markdown-body table {
+  display: table;
+  width: 100%;
+  width: max-content;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: var(--text-main);
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.markdown-body th {
+  background-color: var(--code-bg);
+  color: var(--text-white);
+  font-weight: 600;
+}
+
+.markdown-body tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.markdown-body tr:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.markdown-body blockquote {
+  margin: 24px 0;
+  padding: 12px 20px;
+  border-left: 4px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 0 8px 8px 0;
+
+  color: var(--text-muted);
+}
+
+.markdown-body blockquote p,
+.markdown-body blockquote ul,
+.markdown-body blockquote ol {
+  margin-bottom: 0;
+}
+
+.markdown-body blockquote p + p,
+.markdown-body blockquote p + ul,
+.markdown-body blockquote ul + p {
+  margin-top: 8px;
+}
+
+.markdown-body blockquote li {
+  color: inherit;
+  list-style-type: disc;
+}
+
+.markdown-body blockquote code {
+  background-color: rgba(255, 255, 255, 0.08);
 }
