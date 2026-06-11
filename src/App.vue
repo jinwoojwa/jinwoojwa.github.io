@@ -14,16 +14,29 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { marked } from 'marked';
+import { Marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
 import fm from 'front-matter';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-dark.css';
+
 import WikiSidebar from './components/WikiSidebar.vue';
 import WikiToc from './components/WikiToc.vue';
 
 const currentFile = ref('');
 const content = ref('');
-
-// 🚀 Vite의 현재 Base URL을 가져옵니다. (기본값: '/' 또는 '/레포이름/')
 const baseUrl = import.meta.env.BASE_URL;
+
+const marked = new Marked(
+  markedHighlight({
+    emptyLangClass: 'hljs',
+    langPrefix: 'hljs language-',
+    highlight(code, lang) {
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+      return hljs.highlight(code, { language }).value;
+    },
+  }),
+);
 
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);
