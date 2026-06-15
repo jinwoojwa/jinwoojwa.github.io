@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <h2 class="brand-title" @click="goHome">My Wiki</h2>
+    <h2 class="brand-title" @click="goHome">STUDY</h2>
 
     <div
       v-for="(files, category) in menuList"
