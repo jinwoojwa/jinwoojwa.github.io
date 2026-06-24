@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "front-matter": "^4.0.2",
+    "gray-matter-es": "^0.2.1",
     "highlight.js": "^11.11.1",
     "marked": "^18.0.5",
     "marked-highlight": "^2.2.4",

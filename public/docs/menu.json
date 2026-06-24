@@ -1,4 +1,11 @@
 {
-  "network": ["http-basic.md", "network-basic.md"],
-  "java-web": ["servlet.md"]
+  "computer-science": {
+    "network": ["http-basic.md", "network-basic.md"]
+  },
+  "backend": {
+    "java-web": ["servlet.md"]
+  },
+  "devops": {
+    "docker": ["docker.md"]
+  }
 }
