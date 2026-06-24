@@ -16,7 +16,7 @@
 import { ref, onMounted } from 'vue';
 import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
-import fm from 'front-matter';
+import { matter } from 'gray-matter-es';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 
@@ -65,8 +65,8 @@ const loadMarkdown = async (category, filename) => {
     const response = await fetch(`${baseUrl}docs/${filePath}`);
     if (response.ok) {
       const text = await response.text();
-      const { body } = fm(text);
-      content.value = await marked.parse(body);
+      const { content: markdownContent } = matter(text);
+      content.value = await marked.parse(markdownContent);
     } else {
       content.value = `🛑 파일을 찾을 수 없습니다. (경로: ${baseUrl}docs/${filePath})`;
     }
@@ -85,8 +85,8 @@ const resetToHome = async () => {
     const response = await fetch(`${baseUrl}docs/home.md`);
     if (response.ok) {
       const text = await response.text();
-      const { body } = fm(text);
-      content.value = await marked.parse(body);
+      const { content: markdownContent } = matter(text);
+      content.value = await marked.parse(markdownContent);
     } else {
       content.value =
         '<h1>🏡 나만의 지식 위키</h1><p>공부한 내용을 카테고리별로 자유롭게 정리하는 공간입니다.</p>';

@@ -2,34 +2,47 @@
   <aside class="sidebar">
     <h2 class="brand-title" @click="goHome">STUDY</h2>
 
-    <div
-      v-for="(files, category) in menuList"
-      :key="category"
-      class="category-group"
-      :class="{ 'is-open': openedCategories[category] }"
-    >
-      <h3 @click="toggleCategory(category)">
-        <span class="arrow">▶</span> {{ category }}
-        <span class="count">({{ files.length }})</span>
-      </h3>
+    <div v-for="(subCategories, topCategory) in menuList" :key="topCategory">
+      <div
+        v-for="(files, subCategory) in subCategories"
+        :key="subCategory"
+        class="category-group"
+        :class="{
+          'is-open': openedCategories[`${topCategory}/${subCategory}`],
+        }"
+      >
+        <h3 @click="toggleCategory(topCategory, subCategory)">
+          <span class="arrow">▶</span>
+          <span class="top-category-name">{{ topCategory.split('.')[1] }}</span>
+          <span class="sub-category-name">{{ subCategory }}</span>
+          <span class="count">({{ files.length }})</span>
+        </h3>
 
-      <ul v-if="openedCategories[category]">
-        <li
-          v-for="file in files"
-          :key="file.filename"
-          :class="{ active: currentFile === `${category}/${file.filename}` }"
-          @click="selectFile(category, file.filename)"
+        <ul
+          v-if="openedCategories[`${topCategory}/${subCategory}`]"
+          class="file-list"
         >
-          {{ file.title }}
-        </li>
-      </ul>
+          <li
+            v-for="file in files"
+            :key="file.filename"
+            :class="{
+              active:
+                currentFile ===
+                `${topCategory}/${subCategory}/${file.filename}`,
+            }"
+            @click="selectFile(topCategory, subCategory, file.filename)"
+          >
+            {{ file.title }}
+          </li>
+        </ul>
+      </div>
     </div>
   </aside>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import fm from 'front-matter';
+import { matter } from 'gray-matter-es';
 
 const emit = defineEmits(['select-file', 'go-home']);
 defineProps({
@@ -48,42 +61,53 @@ onMounted(async () => {
     const rawMenu = await response.json();
     const parsedMenu = {};
 
-    for (const category of Object.keys(rawMenu)) {
-      parsedMenu[category] = [];
-      for (const filename of rawMenu[category]) {
-        try {
-          const fileResp = await fetch(
-            `${baseUrl}docs/${category}/${filename}`,
-          );
-          if (fileResp.ok) {
-            const text = await fileResp.text();
-            const { attributes } = fm(text);
-            parsedMenu[category].push({
-              filename: filename,
-              title: attributes.title || filename.replace('.md', ''),
-            });
+    for (const topCategory of Object.keys(rawMenu)) {
+      parsedMenu[topCategory] = {};
+      const subCategories = rawMenu[topCategory];
+      for (const subCategory of Object.keys(subCategories)) {
+        parsedMenu[topCategory][subCategory] = [];
+        for (const filename of subCategories[subCategory]) {
+          try {
+            const fileResp = await fetch(
+              `${baseUrl}docs/${topCategory}/${subCategory}/${filename}`,
+            );
+            if (fileResp.ok) {
+              const text = await fileResp.text();
+              const { data } = matter(text);
+              parsedMenu[topCategory][subCategory].push({
+                filename: filename,
+                title: data.title || filename.replace('.md', ''),
+              });
+            }
+          } catch (e) {
+            console.error(e);
           }
-        } catch (e) {
-          console.error(e);
         }
       }
     }
 
     menuList.value = parsedMenu;
-    Object.keys(menuList.value).forEach((category, index) => {
-      openedCategories.value[category] = index === 0;
+    Object.keys(menuList.value).forEach((topCategory, topIndex) => {
+      Object.keys(menuList.value[topCategory]).forEach(
+        (subCategory, subIndex) => {
+          const categoryKey = `${topCategory}/${subCategory}`;
+          openedCategories.value[categoryKey] =
+            topIndex === 0 && subIndex === 0;
+        },
+      );
     });
   } catch (error) {
     console.error('메뉴 로드 실패:', error);
   }
 });
 
-const toggleCategory = (category) => {
-  openedCategories.value[category] = !openedCategories.value[category];
+const toggleCategory = (topCategory, subCategory) => {
+  const categoryKey = `${topCategory}/${subCategory}`;
+  openedCategories.value[categoryKey] = !openedCategories.value[categoryKey];
 };
 
-const selectFile = (category, filename) => {
-  emit('select-file', category, filename);
+const selectFile = (topCategory, subCategory, filename) => {
+  emit('select-file', `${topCategory}/${subCategory}`, filename);
 };
 
 const goHome = () => {
@@ -130,6 +154,16 @@ const goHome = () => {
   transition: background-color 0.15s ease;
 }
 
+.sidebar h3 .top-category-name {
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+
+.sidebar h3 .sub-category-name {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
 .sidebar h3:hover {
   background-color: var(--bg-hover);
   color: var(--text-white);
@@ -154,7 +188,7 @@ const goHome = () => {
   opacity: 0.6;
 }
 
-.sidebar ul {
+.sidebar .file-list {
   margin-top: 4px;
   margin-bottom: 12px;
   padding-left: 20px;
@@ -162,7 +196,7 @@ const goHome = () => {
   margin-left: 15px;
 }
 
-.sidebar li {
+.sidebar .file-list li {
   padding: 6px 12px;
   margin-bottom: 2px;
   cursor: pointer;
@@ -176,20 +210,20 @@ const goHome = () => {
   white-space: nowrap;
 }
 
-.sidebar li:hover {
+.sidebar .file-list li:hover {
   background-color: var(--bg-hover);
   color: var(--text-white);
   padding-left: 16px;
 }
 
-.sidebar li.active {
+.sidebar .file-list li.active {
   background-color: rgba(66, 184, 131, 0.15);
   color: var(--color-primary);
   font-weight: 600;
   padding-left: 16px;
 }
 
-.sidebar li.active::before {
+.sidebar .file-list li.active::before {
   content: '';
   position: absolute;
   left: 6px;
