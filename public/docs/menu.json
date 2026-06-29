@@ -3,7 +3,8 @@
     "network": ["http-basic.md", "network-basic.md"]
   },
   "backend": {
-    "java-web": ["servlet.md"]
+    "java-web": ["servlet.md"],
+    "spring": ["spring-security.md"]
   },
   "devops": {
     "docker": ["docker.md"]

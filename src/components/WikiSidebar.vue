@@ -1,40 +1,49 @@
 <template>
   <aside class="sidebar">
     <h2 class="brand-title" @click="goHome">STUDY</h2>
-
-    <div v-for="(subCategories, topCategory) in menuList" :key="topCategory">
-      <div
-        v-for="(files, subCategory) in subCategories"
-        :key="subCategory"
-        class="category-group"
-        :class="{
-          'is-open': openedCategories[`${topCategory}/${subCategory}`],
-        }"
-      >
-        <h3 @click="toggleCategory(topCategory, subCategory)">
-          <span class="arrow">▶</span>
-          <span class="top-category-name">{{ topCategory.split('.')[1] }}</span>
-          <span class="sub-category-name">{{ subCategory }}</span>
-          <span class="count">({{ files.length }})</span>
-        </h3>
-
-        <ul
-          v-if="openedCategories[`${topCategory}/${subCategory}`]"
-          class="file-list"
+    <div
+      v-for="(subCategories, topCategory) in menuList"
+      :key="topCategory"
+      class="top-category-group"
+      :class="{ 'is-open': openedTopCategories[topCategory] }"
+    >
+      <h2 class="top-category-title" @click="toggleTopCategory(topCategory)">
+        <span class="arrow">▶</span>
+        <span>{{ topCategory }}</span>
+      </h2>
+      <div v-if="openedTopCategories[topCategory]" class="sub-category-wrapper">
+        <div
+          v-for="(files, subCategory) in subCategories"
+          :key="subCategory"
+          class="category-group"
+          :class="{
+            'is-open': openedCategories[`${topCategory}/${subCategory}`],
+          }"
         >
-          <li
-            v-for="file in files"
-            :key="file.filename"
-            :class="{
-              active:
-                currentFile ===
-                `${topCategory}/${subCategory}/${file.filename}`,
-            }"
-            @click="selectFile(topCategory, subCategory, file.filename)"
+          <h3 @click="toggleCategory(topCategory, subCategory)">
+            <span class="arrow">▶</span>
+            <span class="sub-category-name">{{ subCategory }}</span>
+            <span class="count">({{ files.length }})</span>
+          </h3>
+
+          <ul
+            v-if="openedCategories[`${topCategory}/${subCategory}`]"
+            class="file-list"
           >
-            {{ file.title }}
-          </li>
-        </ul>
+            <li
+              v-for="file in files"
+              :key="file.filename"
+              :class="{
+                active:
+                  currentFile ===
+                  `${topCategory}/${subCategory}/${file.filename}`,
+              }"
+              @click="selectFile(topCategory, subCategory, file.filename)"
+            >
+              {{ file.title }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </aside>
@@ -51,6 +60,7 @@ defineProps({
 
 const menuList = ref({});
 const openedCategories = ref({});
+const openedTopCategories = ref({});
 
 const baseUrl = import.meta.env.BASE_URL;
 
@@ -87,6 +97,9 @@ onMounted(async () => {
     }
 
     menuList.value = parsedMenu;
+    Object.keys(menuList.value).forEach((topCategory) => {
+      openedTopCategories.value[topCategory] = true;
+    });
     Object.keys(menuList.value).forEach((topCategory, topIndex) => {
       Object.keys(menuList.value[topCategory]).forEach(
         (subCategory, subIndex) => {
@@ -100,6 +113,11 @@ onMounted(async () => {
     console.error('메뉴 로드 실패:', error);
   }
 });
+
+const toggleTopCategory = (topCategory) => {
+  openedTopCategories.value[topCategory] =
+    !openedTopCategories.value[topCategory];
+};
 
 const toggleCategory = (topCategory, subCategory) => {
   const categoryKey = `${topCategory}/${subCategory}`;
@@ -138,6 +156,37 @@ const goHome = () => {
   opacity: 0.8;
 }
 
+.top-category-group {
+  margin-bottom: 16px;
+}
+
+.top-category-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-white);
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+.top-category-title:hover {
+  background-color: var(--bg-hover);
+}
+
+.top-category-group.is-open .top-category-title .arrow {
+  transform: rotate(90deg);
+  color: var(--color-primary);
+}
+
+.sub-category-wrapper {
+  padding-left: 12px;
+  margin-top: 4px;
+}
+
 .category-group {
   margin-bottom: 8px;
 }
@@ -154,11 +203,6 @@ const goHome = () => {
   transition: background-color 0.15s ease;
 }
 
-.sidebar h3 .top-category-name {
-  color: var(--text-muted);
-  margin-right: 6px;
-}
-
 .sidebar h3 .sub-category-name {
   color: var(--text-main);
   font-weight: 500;
@@ -169,7 +213,7 @@ const goHome = () => {
   color: var(--text-white);
 }
 
-.sidebar h3 .arrow {
+.sidebar .arrow {
   font-size: 9px;
   margin-right: 8px;
   transition: transform 0.2s ease;
