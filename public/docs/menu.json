@@ -8,5 +8,8 @@
   },
   "devops": {
     "docker": ["docker.md"]
+  },
+  "database": {
+    "mybatis": ["mybatis.md"]
   }
 }
