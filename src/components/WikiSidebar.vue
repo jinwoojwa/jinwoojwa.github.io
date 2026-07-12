@@ -37,8 +37,10 @@
         >
           <h3 @click="toggleCategory(topCategory, subCategory)">
             <span class="arrow">▶</span>
-            <span class="sub-category-name">{{ subCategory }}</span>
-            <span class="count">({{ files.length }})</span>
+            <span class="sub-category-name">{{
+              subCategories[subCategory].title || subCategory
+            }}</span>
+            <span class="count">({{ (files.files || files).length }})</span>
           </h3>
 
           <ul
@@ -46,7 +48,7 @@
             class="file-list"
           >
             <li
-              v-for="file in files"
+              v-for="file in subCategories[subCategory].files || files"
               :key="file.filename"
               :class="{
                 active:
@@ -65,11 +67,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { matter } from 'gray-matter-es';
 
 const emit = defineEmits(['select-file', 'go-home']);
-defineProps({
+const props = defineProps({
   currentFile: { type: String, default: '' },
 });
 
@@ -114,8 +116,17 @@ onMounted(async () => {
       // 2. 기존처럼 하위 카테고리 객체가 오는 경우
       else {
         for (const subCategory of Object.keys(subCategoriesOrFiles)) {
-          parsedMenu[topCategory][subCategory] = [];
-          for (const filename of subCategoriesOrFiles[subCategory]) {
+          const subCategoryValue = subCategoriesOrFiles[subCategory];
+          const isObjectWithTitle =
+            typeof subCategoryValue === 'object' &&
+            subCategoryValue.title &&
+            Array.isArray(subCategoryValue.files);
+          const files = isObjectWithTitle
+            ? subCategoryValue.files
+            : subCategoryValue;
+          const fileList = [];
+
+          for (const filename of files) {
             try {
               const fileResp = await fetch(
                 `${baseUrl}docs/${topCategory}/${subCategory}/${filename}`,
@@ -123,7 +134,7 @@ onMounted(async () => {
               if (fileResp.ok) {
                 const text = await fileResp.text();
                 const { data } = matter(text);
-                parsedMenu[topCategory][subCategory].push({
+                fileList.push({
                   filename: filename,
                   title: data.title || filename.replace('.md', ''),
                 });
@@ -135,6 +146,16 @@ onMounted(async () => {
               );
             }
           }
+
+          if (isObjectWithTitle) {
+            parsedMenu[topCategory][subCategory] = {
+              title: subCategoryValue.title,
+              files: fileList,
+            };
+          } else {
+            // 기존 구조와의 호환성을 위해 파일 목록을 직접 할당
+            parsedMenu[topCategory][subCategory] = fileList;
+          }
         }
       }
     }
@@ -144,6 +165,24 @@ onMounted(async () => {
     console.error('메뉴 로드 실패:', error);
   }
 });
+
+watch(
+  () => props.currentFile,
+  (newFile) => {
+    if (!newFile) return;
+
+    const pathParts = newFile.split('/');
+    if (pathParts.length >= 2) {
+      const topCategory = pathParts[0];
+      openedTopCategories.value[topCategory] = true;
+
+      if (pathParts.length > 2) {
+        openedCategories.value[`${topCategory}/${pathParts[1]}`] = true;
+      }
+    }
+  },
+  { immediate: true },
+);
 
 const toggleTopCategory = (topCategory) => {
   openedTopCategories.value[topCategory] =
