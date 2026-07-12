@@ -12,8 +12,23 @@
         <span>{{ topCategory }}</span>
       </h2>
       <div v-if="openedTopCategories[topCategory]" class="sub-category-wrapper">
+        <!-- 하위 카테고리가 없는 경우 (파일만 있는 경우) -->
+        <ul v-if="subCategories._files" class="file-list is-root">
+          <li
+            v-for="file in subCategories._files"
+            :key="file.filename"
+            :class="{
+              active: currentFile === `${topCategory}/${file.filename}`,
+            }"
+            @click="selectFile(topCategory, null, file.filename)"
+          >
+            {{ file.title }}
+          </li>
+        </ul>
+        <!-- 하위 카테고리가 있는 경우 -->
         <div
           v-for="(files, subCategory) in subCategories"
+          v-else
           :key="subCategory"
           class="category-group"
           :class="{
@@ -73,42 +88,58 @@ onMounted(async () => {
 
     for (const topCategory of Object.keys(rawMenu)) {
       parsedMenu[topCategory] = {};
-      const subCategories = rawMenu[topCategory];
-      for (const subCategory of Object.keys(subCategories)) {
-        parsedMenu[topCategory][subCategory] = [];
-        for (const filename of subCategories[subCategory]) {
+      const subCategoriesOrFiles = rawMenu[topCategory];
+
+      // 1. 최상위 카테고리 바로 아래에 파일 배열이 오는 경우
+      if (Array.isArray(subCategoriesOrFiles)) {
+        parsedMenu[topCategory]['_files'] = [];
+        for (const filename of subCategoriesOrFiles) {
           try {
             const fileResp = await fetch(
-              `${baseUrl}docs/${topCategory}/${subCategory}/${filename}`,
+              `${baseUrl}docs/${topCategory}/${filename}`,
             );
             if (fileResp.ok) {
               const text = await fileResp.text();
               const { data } = matter(text);
-              parsedMenu[topCategory][subCategory].push({
+              parsedMenu[topCategory]['_files'].push({
                 filename: filename,
                 title: data.title || filename.replace('.md', ''),
               });
             }
           } catch (e) {
-            console.error(e);
+            console.error(`[${topCategory}/${filename}] 파일 처리 오류:`, e);
+          }
+        }
+      }
+      // 2. 기존처럼 하위 카테고리 객체가 오는 경우
+      else {
+        for (const subCategory of Object.keys(subCategoriesOrFiles)) {
+          parsedMenu[topCategory][subCategory] = [];
+          for (const filename of subCategoriesOrFiles[subCategory]) {
+            try {
+              const fileResp = await fetch(
+                `${baseUrl}docs/${topCategory}/${subCategory}/${filename}`,
+              );
+              if (fileResp.ok) {
+                const text = await fileResp.text();
+                const { data } = matter(text);
+                parsedMenu[topCategory][subCategory].push({
+                  filename: filename,
+                  title: data.title || filename.replace('.md', ''),
+                });
+              }
+            } catch (e) {
+              console.error(
+                `[${topCategory}/${subCategory}/${filename}] 파일 처리 오류:`,
+                e,
+              );
+            }
           }
         }
       }
     }
 
     menuList.value = parsedMenu;
-    Object.keys(menuList.value).forEach((topCategory) => {
-      openedTopCategories.value[topCategory] = true;
-    });
-    Object.keys(menuList.value).forEach((topCategory, topIndex) => {
-      Object.keys(menuList.value[topCategory]).forEach(
-        (subCategory, subIndex) => {
-          const categoryKey = `${topCategory}/${subCategory}`;
-          openedCategories.value[categoryKey] =
-            topIndex === 0 && subIndex === 0;
-        },
-      );
-    });
   } catch (error) {
     console.error('메뉴 로드 실패:', error);
   }
@@ -125,7 +156,11 @@ const toggleCategory = (topCategory, subCategory) => {
 };
 
 const selectFile = (topCategory, subCategory, filename) => {
-  emit('select-file', `${topCategory}/${subCategory}`, filename);
+  // subCategory가 없는 경우(최상위 카테고리 바로 아래 파일) 경로를 다르게 전달
+  const categoryPath = subCategory
+    ? `${topCategory}/${subCategory}`
+    : topCategory;
+  emit('select-file', categoryPath, filename);
 };
 
 const goHome = () => {
@@ -238,6 +273,11 @@ const goHome = () => {
   padding-left: 20px;
   border-left: 1px solid #333333;
   margin-left: 15px;
+}
+
+.sidebar .file-list.is-root {
+  border-left: none;
+  margin-left: 0;
 }
 
 .sidebar .file-list li {
