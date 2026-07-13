@@ -48,7 +48,7 @@
 }
 
 .markdown-body p {
-  color: #a1a1aa;
+  color: var(--text-main);
   margin-bottom: 42px;
 }
 

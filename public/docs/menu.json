@@ -15,7 +15,14 @@
   "books": {
     "start-ddd": {
       "title": "도메인 주도 개발 시작하기",
-      "files": ["ddd-start-01.md", "ddd-start-02.md", "ddd-start-03.md"]
+      "files": [
+        "ddd-start-01.md",
+        "ddd-start-02.md",
+        "ddd-start-03.md",
+        "ddd-start-04.md",
+        "ddd-start-05.md",
+        "ddd-start-06.md"
+      ]
     }
   }
 }
