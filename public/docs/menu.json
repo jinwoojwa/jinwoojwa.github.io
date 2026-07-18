@@ -2,6 +2,10 @@
   "computer-science": {
     "network": ["http-basic.md", "network-basic.md"]
   },
+  "algorithm": {
+    "programmers": ["programmers-42586.md"],
+    "boj": []
+  },
   "backend": {
     "java-web": ["servlet.md"],
     "spring": ["spring-security.md"]
