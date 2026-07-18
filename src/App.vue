@@ -13,13 +13,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch, nextTick } from 'vue';
 import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import { matter } from 'gray-matter-es';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 import '../src/assets/styles/bookmark.css';
+import '../src/assets/styles/code-block.css';
+import { enhanceCodeBlocks } from './utils/code-block-enhancer.js';
 
 import WikiSidebar from './components/WikiSidebar.vue';
 import WikiToc from './components/WikiToc.vue';
@@ -38,6 +40,11 @@ const marked = new Marked(
     },
   }),
 );
+
+watch(content, async () => {
+  await nextTick();
+  enhanceCodeBlocks();
+});
 
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);

@@ -1,0 +1,46 @@
+.code-block-wrapper {
+  position: relative;
+  margin: 1.5em 0;
+  border-radius: 8px;
+  background-color: var(--code-bg, #2d2d2d);
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: #3a3a3a;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: 1px solid var(--border-color, #333);
+}
+
+.code-block-language {
+  margin-right: auto;
+  font-size: 0.8em;
+  color: var(--text-muted, #888);
+  font-family: monospace;
+  padding: 2px 8px;
+}
+
+.code-block-copy-button {
+  background-color: #4a4a4a;
+  color: var(--text-main, #e0e0e0);
+  border: 1px solid #5a5a5a;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.code-block-copy-button:hover {
+  background-color: #5a5a5a;
+}
+
+.code-block-wrapper > pre {
+  margin: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
