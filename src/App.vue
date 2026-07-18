@@ -19,6 +19,7 @@ import { markedHighlight } from 'marked-highlight';
 import { matter } from 'gray-matter-es';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
+import '../src/assets/styles/bookmark.css';
 
 import WikiSidebar from './components/WikiSidebar.vue';
 import WikiToc from './components/WikiToc.vue';
