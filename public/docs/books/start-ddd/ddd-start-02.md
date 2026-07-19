@@ -168,4 +168,4 @@ JpaOrderRepository          MongoOrderRepository
 
 ## 요청 처리 흐름
 
-![요청 처리 흐름](/public/assets/images/request_flow.png)
+![요청 처리 흐름](/assets/images/request_flow.png)
