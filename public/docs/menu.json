@@ -1,20 +1,34 @@
 {
   "computer-science": {
-    "network": ["http-basic.md", "network-basic.md"]
+    "network": [
+      "http-basic.md",
+      "network-basic.md"
+    ]
   },
   "algorithm": {
-    "programmers": ["programmers-42586.md"],
+    "programmers": [
+      "programmers-42586.md",
+      "programmers-181187.md"
+    ],
     "boj": []
   },
   "backend": {
-    "java-web": ["servlet.md"],
-    "spring": ["spring-security.md"]
+    "java-web": [
+      "servlet.md"
+    ],
+    "spring": [
+      "spring-security.md"
+    ]
   },
   "devops": {
-    "docker": ["docker.md"]
+    "docker": [
+      "docker.md"
+    ]
   },
   "database": {
-    "mybatis": ["mybatis.md"]
+    "mybatis": [
+      "mybatis.md"
+    ]
   },
   "books": {
     "start-ddd": {
