@@ -42,8 +42,14 @@
         "ddd-start-06.md",
         "ddd-start-07.md",
         "ddd-start-08.md",
-        "ddd-start-09.md"
+        "ddd-start-09.md",
+        "ddd-start-10.md",
+        "ddd-start-11.md"
       ]
+    },
+    "structure-and-technology-of-aws": {
+      "title": "그림으로 이해하는 AWS 구조와 기술",
+      "files": ["aws-basic-01.md"]
     }
   }
 }
