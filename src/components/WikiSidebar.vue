@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <h2 class="brand-title" @click="goHome">STUDY</h2>
+    <h2 class="brand-title" @click="goHome">STUDY_LOG</h2>
     <div
       v-for="(subCategories, topCategory) in menuList"
       :key="topCategory"

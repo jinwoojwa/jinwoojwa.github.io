@@ -52,6 +52,11 @@
   margin-bottom: 42px;
 }
 
+.markdown-body strong {
+  color: #60a5fa;
+  font-weight: 700;
+}
+
 .markdown-body pre {
   padding: 20px;
   overflow-x: auto;

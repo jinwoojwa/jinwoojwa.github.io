@@ -1,16 +1,10 @@
 {
-  "computer-science": {
-    "network": [
-      "http-basic.md",
-      "network-basic.md"
-    ]
-  },
   "algorithm": {
+    "boj": [],
     "programmers": [
       "programmers-42586.md",
       "programmers-181187.md"
-    ],
-    "boj": []
+    ]
   },
   "backend": {
     "java-web": [
@@ -18,16 +12,6 @@
     ],
     "spring": [
       "spring-security.md"
-    ]
-  },
-  "devops": {
-    "docker": [
-      "docker.md"
-    ]
-  },
-  "database": {
-    "mybatis": [
-      "mybatis.md"
     ]
   },
   "books": {
@@ -49,7 +33,25 @@
     },
     "structure-and-technology-of-aws": {
       "title": "그림으로 이해하는 AWS 구조와 기술",
-      "files": ["aws-basic-01.md"]
+      "files": [
+        "aws-basic-01.md"
+      ]
     }
-  }
+  },
+  "computer-science": {
+    "network": [
+      "http-basic.md",
+      "nat.md",
+      "network-basic.md"
+    ]
+  },
+  "database": {
+    "mybatis": []
+  },
+  "devops": {
+    "docker": [
+      "docker.md"
+    ]
+  },
+  "language": []
 }
