@@ -7,18 +7,23 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const DOCS_DIR = path.resolve(__dirname, '../public/docs');
 export const MENU_PATH = path.join(DOCS_DIR, 'menu.json');
 
+function readFrontmatter(filePath) {
+  try {
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    return matter(raw).data;
+  } catch (e) {
+    console.warn(
+      `[generate-menu] "${filePath}" frontmatter를 읽지 못했습니다:`,
+      e.message,
+    );
+    return {};
+  }
+}
+
 function readSeriesTitle(subPath, files) {
   for (const filename of files) {
-    try {
-      const raw = fs.readFileSync(path.join(subPath, filename), 'utf-8');
-      const { data } = matter(raw);
-      if (data.series) return data.series;
-    } catch (e) {
-      console.warn(
-        `[generate-menu] "${filename}" frontmatter를 읽지 못했습니다:`,
-        e.message,
-      );
-    }
+    const { series } = readFrontmatter(path.join(subPath, filename));
+    if (series) return series;
   }
   return null;
 }
@@ -27,6 +32,15 @@ function sortFiles(files) {
   return [...files].sort((a, b) =>
     a.localeCompare(b, undefined, { numeric: true }),
   );
+}
+
+// 파일마다 fetch 없이 사이드바에서 바로 제목을 표시할 수 있도록
+// frontmatter의 title을 빌드 타임에 미리 읽어 menu.json에 포함시킨다.
+function toFileEntries(dirPath, filenames) {
+  return filenames.map((filename) => {
+    const { title } = readFrontmatter(path.join(dirPath, filename));
+    return { filename, title: title || filename.replace('.md', '') };
+  });
 }
 
 export function generateMenu() {
@@ -53,7 +67,7 @@ export function generateMenu() {
       .sort();
 
     if (subDirs.length === 0) {
-      menu[top] = rootFiles;
+      menu[top] = toFileEntries(topPath, rootFiles);
       continue;
     }
 
@@ -72,8 +86,11 @@ export function generateMenu() {
           .filter((e) => e.isFile() && e.name.endsWith('.md'))
           .map((e) => e.name),
       );
-      const title = readSeriesTitle(subPath, files);
-      menu[top][sub] = title ? { title, files } : files;
+      const seriesTitle = readSeriesTitle(subPath, files);
+      const fileEntries = toFileEntries(subPath, files);
+      menu[top][sub] = seriesTitle
+        ? { title: seriesTitle, files: fileEntries }
+        : fileEntries;
     }
   }
 

@@ -2,52 +2,124 @@
   "algorithm": {
     "boj": [],
     "programmers": [
-      "programmers-42586.md",
-      "programmers-181187.md"
+      {
+        "filename": "programmers-42586.md",
+        "title": "기능개발 - 프로그래머스"
+      },
+      {
+        "filename": "programmers-181187.md",
+        "title": "두 원 사이의 정수 쌍 - 프로그래머스"
+      }
     ]
   },
   "backend": {
     "java-web": [
-      "servlet.md"
+      {
+        "filename": "servlet.md",
+        "title": "Java Servlet"
+      }
     ],
     "spring": [
-      "spring-security.md"
+      {
+        "filename": "spring-security.md",
+        "title": "Spring Security"
+      }
     ]
   },
   "books": {
     "start-ddd": {
       "title": "도메인 주도 개발 시작하기",
       "files": [
-        "ddd-start-01.md",
-        "ddd-start-02.md",
-        "ddd-start-03.md",
-        "ddd-start-04.md",
-        "ddd-start-05.md",
-        "ddd-start-06.md",
-        "ddd-start-07.md",
-        "ddd-start-08.md",
-        "ddd-start-09.md",
-        "ddd-start-10.md",
-        "ddd-start-11.md"
+        {
+          "filename": "ddd-start-01.md",
+          "title": "1장. 도메인 모델 시작하기"
+        },
+        {
+          "filename": "ddd-start-02.md",
+          "title": "2장. 아키텍처 개요"
+        },
+        {
+          "filename": "ddd-start-03.md",
+          "title": "3장. 애그리거트"
+        },
+        {
+          "filename": "ddd-start-04.md",
+          "title": "4장. 리포지터리와 모델 구현"
+        },
+        {
+          "filename": "ddd-start-05.md",
+          "title": "5장. 스프링 데이터 JPA를 이용한 조회 기능"
+        },
+        {
+          "filename": "ddd-start-06.md",
+          "title": "6장. 응용 서비스와 표현 영역"
+        },
+        {
+          "filename": "ddd-start-07.md",
+          "title": "7장. 도메인 서비스"
+        },
+        {
+          "filename": "ddd-start-08.md",
+          "title": "8장. 애그리거트 트랜잭션 관리"
+        },
+        {
+          "filename": "ddd-start-09.md",
+          "title": "9장. 도메인 모델과 바운디드 컨텍스트"
+        },
+        {
+          "filename": "ddd-start-10.md",
+          "title": "10장. 이벤트"
+        },
+        {
+          "filename": "ddd-start-11.md",
+          "title": "11장. CQRS"
+        }
       ]
     },
     "structure-and-technology-of-aws": {
       "title": "그림으로 이해하는 AWS 구조와 기술",
       "files": [
-        "aws-01-basic-iam.md",
-        "aws-02-computing-storage.md",
-        "aws-03-vpc-network.md",
-        "aws-04-traffic-handling.md",
-        "aws-05-security.md",
-        "aws-06-devops.md"
+        {
+          "filename": "aws-01-basic-iam.md",
+          "title": "AWS 기초와 IAM"
+        },
+        {
+          "filename": "aws-02-computing-storage.md",
+          "title": "EC2·S3·RDS 등 컴퓨팅과 스토리지"
+        },
+        {
+          "filename": "aws-03-vpc-network.md",
+          "title": "VPC와 네트워크"
+        },
+        {
+          "filename": "aws-04-traffic-handling.md",
+          "title": "ELB·Route 53·CloudFront를 이용한 트래픽 처리"
+        },
+        {
+          "filename": "aws-05-security.md",
+          "title": "AWS 보안(IAM, Security Group, NACL 등)"
+        },
+        {
+          "filename": "aws-06-devops.md",
+          "title": "DevOps·컨테이너·서버리스(ECS, EKS, Lambda 등)"
+        }
       ]
     }
   },
   "computer-science": {
     "network": [
-      "http-basic.md",
-      "nat.md",
-      "network-basic.md"
+      {
+        "filename": "http-basic.md",
+        "title": "HTTP 핵심 특성"
+      },
+      {
+        "filename": "nat.md",
+        "title": "NAT (Network Address Translation)"
+      },
+      {
+        "filename": "network-basic.md",
+        "title": "인터넷 통신의 기본 원리"
+      }
     ]
   },
   "database": {
@@ -55,7 +127,10 @@
   },
   "devops": {
     "docker": [
-      "docker.md"
+      {
+        "filename": "docker.md",
+        "title": "Docker 정리"
+      }
     ]
   },
   "language": []

@@ -82,7 +82,6 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import { matter } from 'gray-matter-es';
 
 const emit = defineEmits(['select-file', 'go-home']);
 const props = defineProps({
@@ -96,6 +95,8 @@ const isCollapsed = ref(false);
 
 const baseUrl = import.meta.env.BASE_URL;
 
+// menu.json에는 각 파일의 title이 빌드 타임(generate-menu.mjs)에 미리
+// 채워져 있으므로, 파일마다 별도로 fetch할 필요 없이 한 번의 요청으로 끝난다.
 onMounted(async () => {
   try {
     const response = await fetch(`${baseUrl}docs/menu.json`);
@@ -109,68 +110,13 @@ onMounted(async () => {
 
       // 1. 최상위 카테고리 바로 아래에 파일 배열이 오는 경우
       if (Array.isArray(subCategoriesOrFiles)) {
-        parsedMenu[topCategory]['_files'] = [];
-        for (const filename of subCategoriesOrFiles) {
-          try {
-            const fileResp = await fetch(
-              `${baseUrl}docs/${topCategory}/${filename}`,
-            );
-            if (fileResp.ok) {
-              const text = await fileResp.text();
-              const { data } = matter(text);
-              parsedMenu[topCategory]['_files'].push({
-                filename: filename,
-                title: data.title || filename.replace('.md', ''),
-              });
-            }
-          } catch (e) {
-            console.error(`[${topCategory}/${filename}] 파일 처리 오류:`, e);
-          }
-        }
+        parsedMenu[topCategory]['_files'] = subCategoriesOrFiles;
       }
-      // 2. 기존처럼 하위 카테고리 객체가 오는 경우
+      // 2. 하위 카테고리 객체가 오는 경우
       else {
         for (const subCategory of Object.keys(subCategoriesOrFiles)) {
-          const subCategoryValue = subCategoriesOrFiles[subCategory];
-          const isObjectWithTitle =
-            typeof subCategoryValue === 'object' &&
-            subCategoryValue.title &&
-            Array.isArray(subCategoryValue.files);
-          const files = isObjectWithTitle
-            ? subCategoryValue.files
-            : subCategoryValue;
-          const fileList = [];
-
-          for (const filename of files) {
-            try {
-              const fileResp = await fetch(
-                `${baseUrl}docs/${topCategory}/${subCategory}/${filename}`,
-              );
-              if (fileResp.ok) {
-                const text = await fileResp.text();
-                const { data } = matter(text);
-                fileList.push({
-                  filename: filename,
-                  title: data.title || filename.replace('.md', ''),
-                });
-              }
-            } catch (e) {
-              console.error(
-                `[${topCategory}/${subCategory}/${filename}] 파일 처리 오류:`,
-                e,
-              );
-            }
-          }
-
-          if (isObjectWithTitle) {
-            parsedMenu[topCategory][subCategory] = {
-              title: subCategoryValue.title,
-              files: fileList,
-            };
-          } else {
-            // 기존 구조와의 호환성을 위해 파일 목록을 직접 할당
-            parsedMenu[topCategory][subCategory] = fileList;
-          }
+          parsedMenu[topCategory][subCategory] =
+            subCategoriesOrFiles[subCategory];
         }
       }
     }
