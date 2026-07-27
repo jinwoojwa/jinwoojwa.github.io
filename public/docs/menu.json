@@ -34,9 +34,12 @@
     "structure-and-technology-of-aws": {
       "title": "그림으로 이해하는 AWS 구조와 기술",
       "files": [
-        "aws-basic-iam.md",
-        "aws-computing-storage.md",
-        "aws-vpc-network.md"
+        "aws-01-basic-iam.md",
+        "aws-02-computing-storage.md",
+        "aws-03-vpc-network.md",
+        "aws-04-traffic-handling.md",
+        "aws-05-security.md",
+        "aws-06-devops.md"
       ]
     }
   },

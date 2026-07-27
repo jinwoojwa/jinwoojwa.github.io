@@ -1,65 +1,79 @@
 <template>
-  <aside class="sidebar">
-    <h2 class="brand-title" @click="goHome">STUDY_LOG</h2>
-    <div
-      v-for="(subCategories, topCategory) in menuList"
-      :key="topCategory"
-      class="top-category-group"
-      :class="{ 'is-open': openedTopCategories[topCategory] }"
-    >
-      <h2 class="top-category-title" @click="toggleTopCategory(topCategory)">
-        <span class="arrow">▶</span>
-        <span>{{ topCategory }}</span>
-      </h2>
-      <div v-if="openedTopCategories[topCategory]" class="sub-category-wrapper">
-        <!-- 하위 카테고리가 없는 경우 (파일만 있는 경우) -->
-        <ul v-if="subCategories._files" class="file-list is-root">
-          <li
-            v-for="file in subCategories._files"
-            :key="file.filename"
-            :class="{
-              active: currentFile === `${topCategory}/${file.filename}`,
-            }"
-            @click="selectFile(topCategory, null, file.filename)"
-          >
-            {{ file.title }}
-          </li>
-        </ul>
-        <!-- 하위 카테고리가 있는 경우 -->
+  <aside class="sidebar" :class="{ 'is-collapsed': isCollapsed }">
+    <div class="sidebar-header">
+      <h2 v-if="!isCollapsed" class="brand-title" @click="goHome">STUDY_LOG</h2>
+      <button
+        class="collapse-toggle"
+        :title="isCollapsed ? '사이드바 펼치기' : '사이드바 접기'"
+        @click="toggleCollapsed"
+      >
+        ☰
+      </button>
+    </div>
+    <div v-if="!isCollapsed" class="sidebar-content">
+      <div
+        v-for="(subCategories, topCategory) in menuList"
+        :key="topCategory"
+        class="top-category-group"
+        :class="{ 'is-open': openedTopCategories[topCategory] }"
+      >
+        <h2 class="top-category-title" @click="toggleTopCategory(topCategory)">
+          <span class="arrow">▶</span>
+          <span>{{ topCategory }}</span>
+        </h2>
         <div
-          v-for="(files, subCategory) in subCategories"
-          v-else
-          :key="subCategory"
-          class="category-group"
-          :class="{
-            'is-open': openedCategories[`${topCategory}/${subCategory}`],
-          }"
+          v-if="openedTopCategories[topCategory]"
+          class="sub-category-wrapper"
         >
-          <h3 @click="toggleCategory(topCategory, subCategory)">
-            <span class="arrow">▶</span>
-            <span class="sub-category-name">{{
-              subCategories[subCategory].title || subCategory
-            }}</span>
-            <span class="count">({{ (files.files || files).length }})</span>
-          </h3>
-
-          <ul
-            v-if="openedCategories[`${topCategory}/${subCategory}`]"
-            class="file-list"
-          >
+          <!-- 하위 카테고리가 없는 경우 (파일만 있는 경우) -->
+          <ul v-if="subCategories._files" class="file-list is-root">
             <li
-              v-for="file in subCategories[subCategory].files || files"
+              v-for="file in subCategories._files"
               :key="file.filename"
               :class="{
-                active:
-                  currentFile ===
-                  `${topCategory}/${subCategory}/${file.filename}`,
+                active: currentFile === `${topCategory}/${file.filename}`,
               }"
-              @click="selectFile(topCategory, subCategory, file.filename)"
+              @click="selectFile(topCategory, null, file.filename)"
             >
               {{ file.title }}
             </li>
           </ul>
+          <!-- 하위 카테고리가 있는 경우 -->
+          <div
+            v-for="(files, subCategory) in subCategories"
+            v-else
+            :key="subCategory"
+            class="category-group"
+            :class="{
+              'is-open': openedCategories[`${topCategory}/${subCategory}`],
+            }"
+          >
+            <h3 @click="toggleCategory(topCategory, subCategory)">
+              <span class="arrow">▶</span>
+              <span class="sub-category-name">{{
+                subCategories[subCategory].title || subCategory
+              }}</span>
+              <span class="count">({{ (files.files || files).length }})</span>
+            </h3>
+
+            <ul
+              v-if="openedCategories[`${topCategory}/${subCategory}`]"
+              class="file-list"
+            >
+              <li
+                v-for="file in subCategories[subCategory].files || files"
+                :key="file.filename"
+                :class="{
+                  active:
+                    currentFile ===
+                    `${topCategory}/${subCategory}/${file.filename}`,
+                }"
+                @click="selectFile(topCategory, subCategory, file.filename)"
+              >
+                {{ file.title }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -78,6 +92,7 @@ const props = defineProps({
 const menuList = ref({});
 const openedCategories = ref({});
 const openedTopCategories = ref({});
+const isCollapsed = ref(false);
 
 const baseUrl = import.meta.env.BASE_URL;
 
@@ -205,6 +220,10 @@ const selectFile = (topCategory, subCategory, filename) => {
 const goHome = () => {
   emit('go-home');
 };
+
+const toggleCollapsed = () => {
+  isCollapsed.value = !isCollapsed.value;
+};
 </script>
 
 <style scoped>
@@ -214,20 +233,67 @@ const goHome = () => {
   padding: 24px 12px;
   border-right: 1px solid var(--border-color);
   overflow-y: auto;
+  transition:
+    width 0.2s ease,
+    padding 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sidebar.is-collapsed {
+  width: 48px;
+  padding: 24px 8px;
+  overflow: hidden;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.sidebar.is-collapsed .sidebar-header {
+  justify-content: center;
 }
 
 .brand-title {
   font-size: 18px;
   color: var(--text-white);
-  margin-bottom: 24px;
   padding-left: 8px;
+  margin: 0;
   cursor: pointer;
   user-select: none;
   transition: opacity 0.15s ease;
+  white-space: nowrap;
 }
 
 .brand-title:hover {
   opacity: 0.8;
+}
+
+.collapse-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.collapse-toggle:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-white);
 }
 
 .top-category-group {
