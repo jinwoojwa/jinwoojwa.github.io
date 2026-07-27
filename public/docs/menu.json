@@ -35,7 +35,8 @@
       "title": "그림으로 이해하는 AWS 구조와 기술",
       "files": [
         "aws-basic-iam.md",
-        "aws-computing-storage.md"
+        "aws-computing-storage.md",
+        "aws-vpc-network.md"
       ]
     }
   },
