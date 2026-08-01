@@ -19,6 +19,12 @@
     }
   ],
   "backend": {
+    "auth": [
+      {
+        "filename": "jwt.md",
+        "title": "JWT (JSON Web Token)"
+      }
+    ],
     "java-web": [
       {
         "filename": "servlet.md",
