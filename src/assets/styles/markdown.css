@@ -57,6 +57,25 @@
   font-weight: 700;
 }
 
+.markdown-body a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: rgba(66, 184, 131, 0.4);
+  text-underline-offset: 3px;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+
+.markdown-body a:hover {
+  color: #4ade80;
+  text-decoration-color: currentColor;
+}
+
+.markdown-body a:visited {
+  color: #86efac;
+}
+
 .markdown-body pre {
   padding: 20px;
   overflow-x: auto;
